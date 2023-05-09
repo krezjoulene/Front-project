@@ -1,0 +1,54 @@
+.course-filter {
+    background-color: #fff;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 25px -2px rgb(0 0 0 / 6%);
+    border-radius: 10px;
+    margin-right: 1100px;
+    
+  }
+  
+  .course-filter h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .filter-options {
+    display: flex;
+  }
+  
+  .filter-group {
+    margin-right: 30px;
+  }
+  
+  .filter-group h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .filter-group input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .filter-options {
+      flex-direction: column;
+    }
+  
+    .filter-group {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+  
