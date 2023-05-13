@@ -27,11 +27,12 @@ const PianoDetails = () => {
     <Detailsback/>
    {pianos &&(
      <div className="instru-details-container">
-      <img className="instru-details-img" src={pianos.cover} alt={pianos.name} />
+      <img className="instru-details-img" src={pianos.image} alt={pianos.name} />
       <div className="instru-details-content">
         <h1 className="instru-details-name">{pianos.title}</h1>
         <p className="instru-details-price"><b>Prix: </b>${pianos.price}.00</p>
         <p className="instru-details-price"><b>Quantité: </b>{pianos.quantity}</p>
+        <p><b>Etat d'instrument : </b>{pianos.etat}</p>
         <p className="instru-details-description"><b>Description: </b>{pianos.description}</p>
       </div>
     </div>

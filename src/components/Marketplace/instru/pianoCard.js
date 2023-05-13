@@ -11,7 +11,7 @@ const PianoCard = ({addToCart }) => {
       try {
         const categoryId = '644c0ae86fd044576c704483';
         const response = await axios.get(`http://localhost:8000/api/v1/products?category=${categoryId}`);
-        const filteredProducts = response.data.data.filter(product => product.category === categoryId);
+        const filteredProducts = response.data.filter(product => product.category === categoryId);
         setProducts(filteredProducts);
         console.log(filteredProducts);
       } catch (error) {
@@ -27,7 +27,7 @@ const PianoCard = ({addToCart }) => {
         <div className='items shadow'>
         <Link to={`/644c0ae86fd044576c704483/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
           <div className='img'>
-            <img src={val.cover} alt='' />
+            <img src={val.image} alt='' />
             <div className='overlay'>
               <i className='fab fa-facebook-f icon'></i>
               <i className='fab fa-twitter icon'></i>

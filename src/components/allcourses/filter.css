@@ -1,13 +1,13 @@
 .course-filter {
+   box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
     background-color: #fff;
-    padding: 30px;
+    width: 23%;
+    padding: 15px 0;
+    border-radius: 5px;
+    margin-top: 5px;
     text-align: center;
-    box-shadow: 0 5px 25px -2px rgb(0 0 0 / 6%);
-    border-radius: 10px;
-    margin-right: 1100px;
-    
   }
-  
+
   .course-filter h3 {
     margin-top: 0;
     margin-bottom: 10px;

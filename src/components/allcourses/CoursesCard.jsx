@@ -2,23 +2,30 @@ import React, { useState, useEffect } from "react";
 import "./filter.css";
 import "./courses.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const CoursesCard = () => {
   const [playlist, setPlaylist] = useState([]);
   const [filters, setFilters] = useState({
     price: [],
-    teacher: [],
-    title: "",
+    teacher: new Set(),
+    title: [],
   });
+  const [teachers, setTeachers] = useState([]);
 
   const fetchAxios = async () => {
-    const res = await axios.get("http://localhost:8000/api/v1/playlists");
-    setPlaylist(res.data);
+    const playlistsRes = await axios.get("http://localhost:8000/api/v1/playlists");
+    setPlaylist(playlistsRes.data);
+
+    const teachersRes = await axios.get("http://localhost:8000/api/v1/teacher");
+    setTeachers(teachersRes.data);
   };
+
 
   useEffect(() => {
     fetchAxios();
   }, []);
+
 
   const handleFilterChange = (event) => {
     const { name, value, checked } = event.target;
@@ -35,14 +42,18 @@ const CoursesCard = () => {
         }
       } else if (name === "teacher") {
         if (checked) {
-          updatedFilters.teacher.push(value);
+          updatedFilters.teacher.add(value);
         } else {
-          updatedFilters.teacher = updatedFilters.teacher.filter(
-            (teacher) => teacher !== value
+          updatedFilters.teacher.delete(value);
+        }
+      } else if (name === "title") {
+        if (checked) {
+          updatedFilters.title.push(value);
+        } else {
+          updatedFilters.title = updatedFilters.title.filter(
+            (title) => title !== value
           );
         }
-      } else {
-        updatedFilters.title = value;
       }
       return updatedFilters;
     });
@@ -52,20 +63,30 @@ const CoursesCard = () => {
     let filteredPlaylists = playlist;
 
     if (filters.price.length > 0) {
+      filteredPlaylists = filteredPlaylists.filter((playlist) => {
+        const price = Number(playlist.prix);
+        return filters.price.some((filterPrice) => {
+          if (filterPrice === "50_100") {
+            return price >= 50 && price < 100;
+          } else if (filterPrice === "100_200") {
+            return price >= 100 && price < 200;
+          } else if (filterPrice === "200+") {
+            return price >= 200;
+          }
+          return false;
+        });
+      });
+    }
+
+    if (filters.teacher.size > 0) {
       filteredPlaylists = filteredPlaylists.filter((playlist) =>
-        filters.price.includes(String(playlist.prix))
+        filters.teacher.has(playlist.teacherName)
       );
     }
 
-    if (filters.teacher.length > 0) {
+    if (filters.title.length > 0) {
       filteredPlaylists = filteredPlaylists.filter((playlist) =>
-        filters.teacher.includes(playlist.teacherName)
-      );
-    }
-
-    if (filters.title) {
-      filteredPlaylists = filteredPlaylists.filter((playlist) =>
-        playlist.title.toLowerCase().includes(filters.title.toLowerCase())
+        filters.title.includes(playlist.title)
       );
     }
 
@@ -74,103 +95,117 @@ const CoursesCard = () => {
 
   const filteredPlaylists = filterPlaylists();
 
+  const uniqueTeachers = [...new Set(playlist.map((playlist) => playlist.teacherName))];
+
   return (
-    <>
-      <section className="filter">
+    <section className="container d_flex">
+      <section className="course-filter">
         <div className="container">
-          <h2>Filtres:</h2>
+          <div className="filter-group">
+            <h4>Titre:</h4>
+            {playlist.map((playlist) => (
+              <label key={playlist.title}>
+                <input
+                  type="checkbox"
+                  name="title"
+                  value={playlist.title}
+                  onChange={handleFilterChange}
+                />
+                {playlist.title}
+              </label>
+            ))}
+          </div>
           <div className="filter-group">
             <h4>Prix:</h4>
             <label>
               <input
                 type="checkbox"
                 name="price"
-                value="10"
+                value="50_100"
                 onChange={handleFilterChange}
               />
-              10$
+              50$ - 100$
             </label>
             <label>
               <input
                 type="checkbox"
                 name="price"
-                value="20"
+                value="100_200"
                 onChange={handleFilterChange}
               />
-              20$
+              100$ - 200$
             </label>
             <label>
               <input
                 type="checkbox"
                 name="price"
-                value="30"
+                value="200+"
                 onChange={handleFilterChange}
               />
-              30$
+              + 200$
             </label>
           </div>
           <div className="filter-group">
             <h4>Professeur:</h4>
-            {playlist.map((playlist) => (
-              <label key={playlist.teacherName}>
+            {uniqueTeachers.map((teacher) => (
+              <label key={teacher}>
                 <input
                   type="checkbox"
                   name="teacher"
-                  value={playlist.teacherName}
+                  value={teacher}
                   onChange={handleFilterChange}
                 />
-                {playlist.teacherName}
+                {teacher}
               </label>
             ))}
-
-          </div>
-          <div className="filter-group">
-            <h4>Titre:</h4>
-            <input
-              type="text"
-              name="title"
-              value={filters.title}
-              onChange={handleFilterChange}
-            />
           </div>
         </div>
       </section>
       <section className="coursesCard">
         <div className="container grid2">
-          {filteredPlaylists.map((val) => (
-            <div className="items" key={val._id}>
-              <div className="content flex">
-                <div className="left"></div>
-                <div className="text">
-                  <h1>{val.title}</h1>
-                  <div className="rate">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <label htmlFor="">(5.0)</label>
-                  </div>
-                  <div className="details">
-                    <div className="box">
-                      <div className="para">
-                        <h4>Par : {val.teacherName} </h4>
-                      </div>
+          {filteredPlaylists.map((val) => {
+            const teacherId = teachers.find((teacher) => teacher.name === val.teacherName)?._id;
+            console.log('teacherId ', teacherId)
+            return (
+              <div className="items shadow" key={val._id}>
+                <div className="content flex">
+                  <div className="left"></div>
+                  <div className="text">
+                    <Link to={`/playlist/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
+                      <h1>{val.title}</h1>
+                    </Link>
+                    <div className="rate">
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <i className="fa fa-star"></i>
+                      <label htmlFor="">(5.0)</label>
                     </div>
-                    <span>{val.totalTime}</span>
+                    <div className="details">
+                      <div className="box">
+                        <div className="para">
+                          <Link to={`/teacherprofile/${teacherId}`} onClick={() => window.scrollTo(0, 0)}>
+                            <h4>Par : {val.teacherName} </h4>
+                          </Link>
+                        </div>
+                      </div>
+                      <span>{val.totalTime}</span>
+                    </div>
                   </div>
                 </div>
+                <div className="price">
+                  <h3>${val.prix} tous les cours</h3>
+                </div>
+                <button className="outline-btn">INSCRIVEZ-VOUS MAINTENANT!</button>
               </div>
-              <div className="price">
-                <h3>${val.prix} tous les cours</h3>
-              </div>
-              <button className="outline-btn">INSCRIVEZ-VOUS MAINTENANT!</button>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
-  
-  </>
-  )};
+    </section>
+  );
+};
 
 export default CoursesCard;
+

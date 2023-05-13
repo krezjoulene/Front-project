@@ -27,11 +27,12 @@ const TambourDetails = () => {
     <Detailsback/>
     {tambour && (
     <div className="instru-details-container">
-      <img className="instru-details-img" src={tambour.cover} alt={tambour.name} />
+      <img className="instru-details-img" src={tambour.image} alt={tambour.name} />
       <div className="instru-details-content">
         <h1 className="instru-details-name">{tambour.title}</h1>
         <p className="instru-details-price"><b>Prix: </b>${tambour.price}.00</p>
         <p className="instru-details-price"><b>Quantité: </b>{tambour.quantity}</p>
+        <p><b>Etat d'instrument : </b>{tambour.etat}</p>
         <p className="instru-details-description"><b>Description: </b>{tambour.description}</p>
       </div>
     </div>

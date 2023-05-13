@@ -28,12 +28,13 @@ const InstrumentDetails = () => {
       <Detailsback/>
       {instrument && (
         <div className="instru-details-container">
-          <img className="instru-details-img" src={instrument.cover} alt={instrument.name} />
+          <img className="instru-details-img" src={instrument.image} />
           <div className="instru-details-content">
             <h1 className="instru-details-name">{instrument.title}</h1>
             <p className="instru-details-price">
               <b>Prix: </b>${instrument.price}.00
             </p>
+            <p><b>Etat d'instrument : </b>{instrument.etat}</p>
             <p className="instru-details-description">
               <b>Description: </b>
               {instrument.description}

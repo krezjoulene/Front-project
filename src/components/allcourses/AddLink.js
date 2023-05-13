@@ -5,7 +5,6 @@ import "../Marketplace/MainPage/Home.css"
 
 function AddMeeting() {
     const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
     const [lien, setLink] = useState("");
     const [date, setdate] = useState("");
@@ -16,10 +15,7 @@ function AddMeeting() {
         setName(e.target.value);
         console.log(e.target.value)
      }
-     const handelchangPrice=(e)=>{
-         setPrice(e.target.value);
-         console.log(e.target.value)
-      }
+    
      
       const handelchangeDescrip=(e)=>{
          setDescription(e.target.value);
@@ -39,7 +35,6 @@ function AddMeeting() {
          try {
             const res=await axios.post("http://localhost:8000/api/v1/playlists",{
              title: name,
-             price: price,
              description: description,
              lien : lien ,
              date : date 
@@ -63,7 +58,7 @@ function AddMeeting() {
         <>
             <Detailsback />
             <div className="add-instrument-form">
-                <h2>Ajouter un reunion en ligne</h2>
+                <h2>Ajouter une reunion en ligne</h2>
                 <form >
                     <div className="form-group">
                         <label htmlFor="name"><b>Titre</b></label>
@@ -72,15 +67,6 @@ function AddMeeting() {
                             id="tiltle"
                             value={name}
                             onChange={handelchangName}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="price"><b>Prix </b></label>
-                        <input
-                            type="number"
-                            id="price"
-                            value={price}
-                            onChange={handelchangPrice}
                         />
                     </div>
                     <div className="form-group">
@@ -109,7 +95,7 @@ function AddMeeting() {
                             onChange={handelchangedate}
                         />
                     </div>
-                    <button onClick={AjoutPlaylist}><b>Ajouter le reunion</b></button>
+                    <button onClick={AjoutPlaylist}><b>Ajouter la reunion</b></button>
                 </form>
             </div>
           

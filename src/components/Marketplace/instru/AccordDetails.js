@@ -27,11 +27,12 @@ const AccordDetails = () => {
     <Detailsback/>
     {accord && (
        <div className="instru-details-container">
-      <img className="instru-details-img" src={accord.cover} alt={accord.name} />
+      <img className="instru-details-img" src={accord.image} alt={accord.name} />
       <div className="instru-details-content">
         <h1 className="instru-details-name">{accord.title}</h1>
         <p className="instru-details-price"><b>Prix: </b>${accord.price}.00</p>
-        <p className="instru-details-price"><b>Quantité: </b>{accord.quantity}</p>     
+        <p className="instru-details-price"><b>Quantité: </b>{accord.quantity}</p> 
+        <p><b>Etat d'instrument : </b>{accord.etat}</p>    
         <p className="instru-details-description"><b>Description: </b>{accord.description}</p>
       </div>
     </div>

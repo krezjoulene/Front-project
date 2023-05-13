@@ -21,6 +21,7 @@ function Sign() {
      }
      const handelchangePassword=(e)=>{
         setmdp(e.target.value);
+        console.log(e.target.value)
      }
      const handelchangePhone=(e)=>{
         settelephone(e.target.value);
@@ -64,18 +65,22 @@ function Sign() {
             console.log("hhh",res.data.data.role)
             const token = res.data.data.token; // Récupérer le jeton d'authentification du back-end
             const userRole = res.data.data.role; // Récupérer le role de l'utilisateur du back-end
+            const userId = res.data.data._id ;
+            console.log('id',userId);
             const userName = res.data.data.name;
             const userEmail = res.data.data.email;
             const userPhone = res.data.data.phoneNumber ;
             const userPassword = res.data.data.password ;
+            console.log("hhh",res.data.data.password)
             // Enregistrer le jeton et le role de l'utilisateur dans le stockage local ou les cookies
             setIsLoggedIn(true);
             localStorage.setItem('token', token);
             localStorage.setItem('UserRole', userRole);
             localStorage.setItem('UserName',userName);
             localStorage.setItem('UserEmail',userEmail);
-            localStorage.setItem('UserPhone',userPhone);
-            localStorage.setItem('UserPassword',userPassword);
+            localStorage.setItem('UserPhone', userPhone);
+            localStorage.setItem('UserPassword', userPassword); 
+            localStorage.setItem('UserId',userId);           
             console.log("llll",userRole)
             console.log("llll",userName)
             console.log("llll",userEmail)

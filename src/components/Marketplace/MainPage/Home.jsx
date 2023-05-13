@@ -48,9 +48,9 @@ const Home2 = ({ CartItem }) => {
             <Link to="/form" onClick={() => window.scrollTo(0, 0)} >
             <i className='fa fa-plus icon-circle'></i>
             </Link>
-            <Link to="/profile"><i className='fa fa-user icon-circle'></i></Link>
+            <Link to="/profile" onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
               <div className='cart'>
-              <Link to='/cart'>
+              <Link to='/cart' onClick={() => window.scrollTo(0, 0)}>
                 <i className='fa fa-shopping-bag icon-circle'></i>
                 <span>{CartItem.length === 0 ? "" : CartItem.length}</span>
               </Link>
@@ -61,9 +61,9 @@ const Home2 = ({ CartItem }) => {
               <Link to="/SignIn" onClick={() => window.scrollTo(0, 0)} >
             <i className='fa fa-plus icon-circle'></i>
             </Link>
-            <Link to="/SignIn"><i className='fa fa-user icon-circle'></i></Link>
+            <Link to="/SignIn" onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
               <div className='cart'>
-              <Link to='/cart'>
+              <Link to='/cart' onClick={() => window.scrollTo(0, 0)}>
                 <i className='fa fa-shopping-bag icon-circle'></i>
                 <span>{CartItem.length === 0 ? "" : CartItem.length}</span>
               </Link>

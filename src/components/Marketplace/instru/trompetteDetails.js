@@ -26,11 +26,12 @@ const TrompetteDetails = () => {
     <Detailsback/>
     {trompettes && (
     <div className="instru-details-container">
-      <img className="instru-details-img" src={trompettes.cover} alt={trompettes.name} />
+      <img className="instru-details-img" src={trompettes.image} alt={trompettes.name} />
       <div className="instru-details-content">
         <h1 className="instru-details-name">{trompettes.title}</h1>
         <p className="instru-details-price"><b>Prix: </b>${trompettes.price}.00</p>
         <p className="instru-details-price"><b>Quantité: </b>{trompettes.quantity}</p>
+        <p><b>Etat d'instrument : </b>{trompettes.etat}</p>
         <p className="instru-details-description"><b>Description: </b>{trompettes.description}</p>
       </div>
     </div>

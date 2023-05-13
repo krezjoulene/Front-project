@@ -26,11 +26,12 @@ const SaxoDetails = () => {
     <Detailsback/>
     {saxos && (
     <div className="instru-details-container">
-      <img className="instru-details-img" src={saxos.cover} alt={saxos.name} />
+      <img className="instru-details-img" src={saxos.image} alt={saxos.name} />
       <div className="instru-details-content">
         <h1 className="instru-details-name">{saxos.title}</h1>
         <p className="instru-details-price"><b>Prix: </b>${saxos.price}.00</p>
         <p className="instru-details-price"><b>Quantité: </b>{saxos.quantity}</p>
+        <p><b>Etat d'instrument : </b>{saxos.etat}</p>
         <p className="instru-details-description"><b>Description: </b>{saxos.description}</p>
       </div>
     </div>

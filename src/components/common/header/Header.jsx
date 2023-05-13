@@ -57,7 +57,7 @@ const Header = () => {
           </ul>
           {(isLoggedIn && (userRole === "user" || userRole === "teacher")) ? (
             <>
-            <li><Link to="/profile"><i className='fa fa-user icon-header'></i></Link></li>
+            <li><Link to="/profile" onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-header'></i></Link></li>
               <li>
                 <button className="button-28" onClick={handleLogout}>
                   Déconnexion

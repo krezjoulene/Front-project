@@ -9,9 +9,9 @@ const DarboukaCard = ({addToCart }) => {
   useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
-        const categoryId = '644c0611066ad4fe13963714';
+        const categoryId = '6454e2852b3142cdafa936b7';
         const response = await axios.get(`http://localhost:8000/api/v1/products?category=${categoryId}`);
-        const filteredProducts = response.data.data.filter(product => product.category === categoryId);
+        const filteredProducts = response.data.filter(product => product.category === categoryId);
         setProducts(filteredProducts);
         console.log(filteredProducts);
       } catch (error) {
@@ -25,9 +25,9 @@ const DarboukaCard = ({addToCart }) => {
     <>
       {products?.map((val) => (
         <div className='items shadow'>
-          <Link to={`/644c0611066ad4fe13963714/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
+          <Link to={`/6454e2852b3142cdafa936b7/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
           <div className='img'>
-            <img src={val.cover} alt='' />
+            <img src={val.image} alt='' />
             <div className='overlay'>
               <i className='fab fa-facebook-f icon'></i>
               <i className='fab fa-twitter icon'></i>

@@ -27,11 +27,12 @@ const OudDetails = () => {
     <Detailsback/>
     {ouds && (
     <div className="instru-details-container">
-      <img className="instru-details-img" src={ouds.cover} alt={ouds.name} />
+      <img className="instru-details-img" src={ouds.image} alt={ouds.name} />
       <div className="instru-details-content">
         <h1 className="instru-details-name">{ouds.title}</h1>
         <p className="instru-details-price"><b>Prix: </b>${ouds.price}.00</p>
         <p className="instru-details-price"><b>Quantité: </b>{ouds.quantity}</p>
+        <p><b>Etat d'instrument : </b>{ouds.etat}</p>
         <p className="instru-details-description"><b>Description: </b>{ouds.description}</p>
       </div>
     </div>

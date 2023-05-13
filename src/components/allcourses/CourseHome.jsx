@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Back from "../common/back/Back";
 import CoursesCard from "./CoursesCard";
 import OnlineCourses from "./OnlineCourses";
-import CourseFilter from "./CourseFilter";
 import { Link } from "react-router-dom";
 
 const CourseHome = () => {
@@ -51,20 +50,20 @@ const CourseHome = () => {
           <div className='icon2 f_flex width '>
             {(isLoggedIn && userRole === "teacher") ? (
               <>
-              <div style={{ position: 'relative' }}>
-                <i onClick={toggleListe} className='fa fa-plus icon-circle'></i>
-                {afficherListe && (
-                   <div className='dropdown'>
-                  <ul>
-                    <li>
-                      <a href="/ajouterInstrument">Ajouter une playlist</a>
-                    </li>
-                    <li>
-                      <a href="/ajouterLien">Ajouter un lien meet</a>
-                    </li>
-                  </ul>
-                   </div>
-                )}
+                <div style={{ position: 'relative' }}>
+                  <i onClick={toggleListe} className='fa fa-plus icon-circle'></i>
+                  {afficherListe && (
+                    <div className='dropdown'>
+                      <ul>
+                        <li>
+                          <a href="/ajouterInstrument">Ajouter une playlist</a>
+                        </li>
+                        <li>
+                          <a href="/ajouterLien">Ajouter un lien meet</a>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 <Link to="/profile"><i className='fa fa-user icon-circle'></i></Link>
               </>
@@ -75,15 +74,13 @@ const CourseHome = () => {
                 </Link>
                 <Link to="/SignIn"><i className='fa fa-user icon-circle'></i></Link>
                 <div className='cart'>
-
-
                 </div>
               </>
             )}
           </div>
         </div>
       </section>
-      <CoursesCard/>
+      <CoursesCard />
       <OnlineCourses />
     </>
   );

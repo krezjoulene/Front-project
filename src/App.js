@@ -37,6 +37,7 @@ import AddPlaylist from "./components/allcourses/AddPlaylist"
 import AddMeeting from "./components/allcourses/AddLink"
 import AllCorses from "./components/allcourses/Allcourses"
 import AddCourse from "./components/allcourses/AddCourse"
+import TeacherProfile from "./components/Profiles/teacherProfile"
 
 
 function App() {
@@ -44,14 +45,14 @@ function App() {
 
   const addToCart = (product) => {
    //Si notre produit est déjà présent dans le panier, alors nous utilisons la fonction 'find' pour le trouver
-    const productExit = CartItem.find((item) => item.name === product.name)
+    const productExit = CartItem.find((item) => item.title === product.title)
    // Si le produit existe déjà dans le panier, la fonction setCartItem sera exécutée.
    // À l'intérieur de setCartItem, map() sera exécuté pour chaque élément du panier,
   // pour vérifier si l'ID de l'élément et l'ID du produit correspondent. Si c'est le cas,
   // le produit existant sera affiché et la quantité augmentée de 1.
 // Si l'élément et le produit ne correspondent pas, de nouveaux éléments seront ajoutés.
     if (productExit) {
-      setCartItem(CartItem.map((item) => (item.name === product.name ? { ...productExit, qty: productExit.qty + 1 } : item)))
+      setCartItem(CartItem.map((item) => (item.title === product.title ? { ...productExit, qty: productExit.qty + 1 } : item)))
     } else {
       // mais si le produit n'existe pas dans le panier, cela signifie que le panier est vide
      // alors le nouveau produit est ajouté dans le panier et sa quantité est initialisée à 1
@@ -60,17 +61,17 @@ function App() {
   }
 
   const decreaseQty = (product) => {
-    const productExit = CartItem.find((item) => item.name === product.name)
+    const productExit = CartItem.find((item) => item.title === product.title)
     if (productExit.qty === 1) {
-      setCartItem(CartItem.filter((item) => item.name !== product.name))
+      setCartItem(CartItem.filter((item) => item.title !== product.title))
     } else {
-      setCartItem(CartItem.map((item) => (item.name === product.name ? { ...productExit, qty: productExit.qty - 1 } : item)))
+      setCartItem(CartItem.map((item) => (item.title === product.title ? { ...productExit, qty: productExit.qty - 1 } : item)))
     }
   }
   const removeCartItem = (product) => {
-    const productExit = CartItem.find((item) => item.name === product.name)
+    const productExit = CartItem.find((item) => item.title === product.title)
     if (productExit.qty === 1) {
-      setCartItem(CartItem.filter((item) => item.name !== product.name))
+      setCartItem(CartItem.filter((item) => item.title !== product.title))
     } 
   }
   return (
@@ -86,6 +87,7 @@ function App() {
           <Route exact path='/ajouterInstrument' component={AddPlaylist} />
           <Route exact path='/ajouterLien' component={AddMeeting} />
           <Route exact path='/Allcorses' component={AddCourse} />
+          <Route exact path='/teacherprofile/:teacherId' component={TeacherProfile} />
           <Route exact path='/marketplace' >
             <Instruments CartItem={CartItem} addToCart={addToCart} />
           </Route>
@@ -103,25 +105,25 @@ function App() {
           <Route exact path='/644daad111bd2335dccc3927' >
             <Accords CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/violon' >
+          <Route exact path='/644dadf41e37dbe85c5b5360' >
             <Violon CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/violoncelle' >
+          <Route exact path='/6450f15d5e85f86c0f7cd964' >
             <Violoncelle CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/tambours' >
+          <Route exact path='/6454e2ae2b3142cdafa936be' >
             <Tambours CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/oud' >
+          <Route exact path='/6454e1f22b3142cdafa936ab' >
             <Oud CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/saxophone' >
+          <Route exact path='/6454e25f2b3142cdafa936b1' >
             <Saxo CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/trompette' >
+          <Route exact path='/6454e2702b3142cdafa936b4' >
             <Trompette CartItem={CartItem} addToCart={addToCart} />
           </Route>
-          <Route exact path='/darbouka' >
+          <Route exact path='/6454e2852b3142cdafa936b7' >
             <Darbouka CartItem={CartItem} addToCart={addToCart} />
           </Route>
           <Route path="/playlist/:_id" component={AllCorses}/>
@@ -129,13 +131,13 @@ function App() {
           <Route path="/644c0611066ad4fe13963714/:_id" component={GuitarDetails} />
           <Route path="/644c0ae86fd044576c704483/:_id" component={PianoDetails} />
           <Route path="/644daad111bd2335dccc3927/:_id" component={AccordDetails} />
-          <Route path="/violon/:id" component={Violondetails} />
-          <Route path="/violoncelle/:id" component={VioloncelleDetails} />
-          <Route path="/tambours/:id" component={TambourDetails} />
-          <Route path="/oud/:id" component={OudDetails} />
-          <Route path="/saxo/:id" component={SaxoDetails} />
-          <Route path="/trompette/:id" component={TrompetteDetails} />
-          <Route path="/darbouka/:id" component={DarboukaDetails} />
+          <Route path="/644dadf41e37dbe85c5b5360/:id" component={Violondetails} />
+          <Route path="/6450f15d5e85f86c0f7cd964/:id" component={VioloncelleDetails} />
+          <Route path="/6454e2ae2b3142cdafa936be/:id" component={TambourDetails} />
+          <Route path="/6454e1f22b3142cdafa936ab/:id" component={OudDetails} />
+          <Route path="/6454e25f2b3142cdafa936b1/:id" component={SaxoDetails} />
+          <Route path="/6454e2702b3142cdafa936b4/:id" component={TrompetteDetails} />
+          <Route path="/6454e2852b3142cdafa936b7/:id" component={DarboukaDetails} />
         </Switch>
         <Footer />
       </Router>

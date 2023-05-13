@@ -11,7 +11,7 @@ const AccordCard = ({addToCart }) => {
       try {
         const categoryId = '644daad111bd2335dccc3927';
         const response = await axios.get(`http://localhost:8000/api/v1/products?category=${categoryId}`);
-        const filteredProducts = response.data.data.filter(product => product.category === categoryId);
+        const filteredProducts = response.data.filter(product => product.category === categoryId);
         setProducts(filteredProducts);
         console.log(filteredProducts);
       } catch (error) {
@@ -28,7 +28,7 @@ const AccordCard = ({addToCart }) => {
         <div className='items shadow'>
         <Link to={`/644daad111bd2335dccc3927/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
           <div className='img'>
-            <img src={val.cover} alt='' />
+            <img src={val.image} alt='' />
             <div className='overlay'>
               <i className='fab fa-facebook-f icon'></i>
               <i className='fab fa-twitter icon'></i>

@@ -9,8 +9,8 @@ const Categories = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/v1/categories");
-        setCategories(response.data.data);
-        console.log("category ",response.data.data);
+        setCategories(response.data);
+        console.log("category ",response.data);
       } catch (error) {
         console.log(error);
       }

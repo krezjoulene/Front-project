@@ -8,9 +8,9 @@ const [product , setproduct] = useState([]);
   const fetchAxios = async () =>{
     const res = await axios.get("http://localhost:8000/api/v1/products")
     //console.log(res.data)
-    setproduct(res.data.data)
+    setproduct(res.data)
   }
-  console.log(product)
+  console.log("product",product)
   useEffect(()=>{
       fetchAxios();
   },[])
@@ -20,7 +20,7 @@ const [product , setproduct] = useState([]);
         <div className='items shadow'>
           <Link to={`/instrument/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
           <div className='img'>
-            <img src={val.cover} alt='' />
+            <img src={val.image} alt='' />
           </div>
           <div className='details'>
             <h2>{val.title}</h2>

@@ -11,7 +11,7 @@ const GuitarsCard = ({ addToCart }) => {
       try {
         const categoryId = '644c0611066ad4fe13963714';
         const response = await axios.get(`http://localhost:8000/api/v1/products?category=${categoryId}`);
-        const filteredProducts = response.data.data.filter(product => product.category === categoryId);
+        const filteredProducts = response.data.filter(product => product.category === categoryId);
         setProducts(filteredProducts);
         console.log(filteredProducts);
       } catch (error) {
@@ -27,7 +27,7 @@ const GuitarsCard = ({ addToCart }) => {
         <div className="items shadow" key={guitar._id}>
           <Link to={`/644c0611066ad4fe13963714/${guitar._id}`} onClick={() => window.scrollTo(0, 0)}>
             <div className="img">
-              <img src={guitar.imageCover} alt="" />
+              <img src={guitar.image} alt="" />
               <div className="overlay">
                 <i className="fab fa-facebook-f icon"></i>
                 <i className="fab fa-twitter icon"></i>
