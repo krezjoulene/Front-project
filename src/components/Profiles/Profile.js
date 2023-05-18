@@ -9,15 +9,10 @@ const Profile = () => {
   const [userRole, setUserRole] = useState("");
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [userImage, setUserImage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [UserId, setUserId] = useState("");
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  }
+
   useEffect(() => {
     // Vérifier si un jeton d'authentification est présent dans le stockage local
     const token = localStorage.getItem("token");
@@ -26,16 +21,14 @@ const Profile = () => {
     const userEmail = localStorage.getItem("UserEmail");
     const userPhone = localStorage.getItem("UserPhone");
     const userImage = localStorage.getItem("UserImage");
-    const UserId = localStorage.getItem("userId");
-    console.log("id2",UserId)
     if (token && userRole) {
       setIsLoggedIn(true);
       setUserRole(userRole);
       setUserName(userName);
       setUserEmail(userEmail);
       setUserPhone(userPhone);
+      console.log(userPhone);
       setUserImage(userImage);
-      setUserId(UserId);
     }
   }, []);
 
@@ -51,22 +44,31 @@ const Profile = () => {
 
   const saveChanges = async (e) => {
     e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append("name", userName);
+    formData.append("email", userEmail);
+    formData.append("phoneNumber", userPhone);
+    formData.append("image", userImage);
     try {
-      // Effectuer la requête de connexion à l'API
-      const res = await axios.put(`/api/users/${UserId}`,{
-      name: userName,
-      email: userEmail,
-      phoneNumber: userPhone,
-      password : userPassword,
+      // Effectuer la requête de mise à jour à l'API
+      const id = localStorage.getItem('UserId');  
+      const token = localStorage.getItem("token");
+      const res = await axios.put(`http://localhost:8000/api/v1/user/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${token}`
+        }
       });
-
+      console.log("Modifications enregistrées avec succès !");
       if (res.status === 200) {
         console.log("Modifications enregistrées avec succès !");
       }
-    }catch(error){
-        console.error("Erreur lors de l'enregistrement des modifications :", error);
-      }
-    };
+    } catch (error) {
+      console.error("Erreur lors de l'enregistrement des modifications :", error);
+    }
+  };
+  
   
 
   return (
@@ -113,12 +115,12 @@ const Profile = () => {
         <p>
           <b>Téléphone :</b>
           <input
-            type="text"
+            type="number"
             value={userPhone}
             onChange={(e) => setUserPhone(e.target.value)}
           />
         </p>
-        <p>
+         {/* <p>
           <b>Mot de passe :</b>
           <div className="password-input-container">
             <input
@@ -131,8 +133,8 @@ const Profile = () => {
               onClick={togglePasswordVisibility}
             ></i>
           </div>
-        </p>
-        <button12 onClick={saveChanges}>Enregistrer</button12>
+         </p>*/}
+      <button onClick={saveChanges}>Enregistrer</button>
       </div>
       </div> 
     </>

@@ -65,14 +65,11 @@ const CourseHome = () => {
                     </div>
                   )}
                 </div>
-                <Link to="/profile"><i className='fa fa-user icon-circle'></i></Link>
+                <Link to="/profile"  onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
               </>
             ) : (
               <>
-                <Link to="/SignIn" onClick={() => window.scrollTo(0, 0)} >
-                  <i className='fa fa-plus icon-circle'></i>
-                </Link>
-                <Link to="/SignIn"><i className='fa fa-user icon-circle'></i></Link>
+                <Link to="/SignIn"  onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
                 <div className='cart'>
                 </div>
               </>

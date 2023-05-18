@@ -38,6 +38,9 @@ import AddMeeting from "./components/allcourses/AddLink"
 import AllCorses from "./components/allcourses/Allcourses"
 import AddCourse from "./components/allcourses/AddCourse"
 import TeacherProfile from "./components/Profiles/teacherProfile"
+import ReunionDetails from "./components/allcourses/OnlineCourseDetails"
+import ConservatoireProfile from "./components/Profiles/conservatoireprofile"
+import Page404 from "./Errpage"
 
 
 function App() {
@@ -88,6 +91,7 @@ function App() {
           <Route exact path='/ajouterLien' component={AddMeeting} />
           <Route exact path='/Allcorses' component={AddCourse} />
           <Route exact path='/teacherprofile/:teacherId' component={TeacherProfile} />
+          <Route exact path='/conservatoire/:ConsId' component={ConservatoireProfile} />
           <Route exact path='/marketplace' >
             <Instruments CartItem={CartItem} addToCart={addToCart} />
           </Route>
@@ -127,6 +131,7 @@ function App() {
             <Darbouka CartItem={CartItem} addToCart={addToCart} />
           </Route>
           <Route path="/playlist/:_id" component={AllCorses}/>
+          <Route path="/reunion/:_id" component={ReunionDetails}/>
           <Route path="/instrument/:_id" render={(props) => <InstrumentDetails {...props} />} />
           <Route path="/644c0611066ad4fe13963714/:_id" component={GuitarDetails} />
           <Route path="/644c0ae86fd044576c704483/:_id" component={PianoDetails} />
@@ -138,6 +143,7 @@ function App() {
           <Route path="/6454e25f2b3142cdafa936b1/:id" component={SaxoDetails} />
           <Route path="/6454e2702b3142cdafa936b4/:id" component={TrompetteDetails} />
           <Route path="/6454e2852b3142cdafa936b7/:id" component={DarboukaDetails} />
+          <Route path="/*" element={<Page404/>} />
         </Switch>
         <Footer />
       </Router>

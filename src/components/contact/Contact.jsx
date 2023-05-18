@@ -1,9 +1,53 @@
-import React from "react"
+import React, { useState } from "react";
+import axios from "axios";
 import Back from "../common/back/Back"
 import "./contact.css"
 
 const Contact = () => {
   const map = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d904726.6131739549!2d85.24565535!3d27.65273865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1652535615693!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" '
+  const [nom, setNom] = useState("");
+  const [email, setEmail] = useState("");
+  const [sujet, setSujet] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleNomChange = (e) => {
+    setNom(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSujetChange = (e) => {
+    setSujet(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post("http://localhost:8000/api/v1/contactus", {
+        nom,
+        email,
+        sujet,
+        description,
+      });
+      alert("Votre message a été envoyé avec succès !");
+      // Réinitialisez les états du formulaire
+      setNom("");
+      setEmail("");
+      setSujet("");
+      setDescription("");
+    } catch (error) {
+      console.log(error);
+      alert("Erreur lors de l'envoi du message. Veuillez réessayer.");
+    }
+  };
+
   return (
     <>
       <Back title='Contactez-nous' />
@@ -23,7 +67,7 @@ const Contact = () => {
               </div>
               <div className='box'>
                 <h4>EMAIL:</h4>
-                <p>info@yoursite.com</p>
+                <p>HyperDev@gmai.com</p>
               </div>
               <div className='box'>
                 <h4>TÉLÉPHONE:</h4>
@@ -31,24 +75,46 @@ const Contact = () => {
               </div>
             </div>
 
-            <form action=''>
-              <div className='flexSB'>
-                <input type='text' placeholder='Nom' />
-                <input type='email' placeholder='Email' />
+            <form>
+              <div className="flexSB">
+                <input
+                  type="text"
+                  placeholder="Nom"
+                  value={nom}
+                  onChange={handleNomChange}
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
               </div>
-              <input type='text' placeholder='Sujet' />
-              <textarea cols='30' rows='10'>
-                Écrivez un message ici...
+              <input
+                type="text"
+                placeholder="Sujet"
+                value={sujet}
+                onChange={handleSujetChange}
+              />
+              <textarea
+                cols="30"
+                rows="10"
+                placeholder="Écrivez un message ici..."
+                value={description}
+                onChange={handleDescriptionChange}
+              >
               </textarea>
-              <button className='primary-btn'>ENVOYER LE MESSAGE</button>
+              <button className="primary-btn" onClick={handleSubmit}>
+                ENVOYER LE MESSAGE
+              </button>
             </form>
 
             <h3>Suivez-nous ici</h3>
             <div className="social">
-            <i className="fab fa-facebook-f icon"></i>
-            <i className="fab fa-instagram icon"></i>
-            <i className="far fa-envelope icon"></i>
-          </div>
+              <i className="fab fa-facebook-f icon"></i>
+              <i className="fab fa-instagram icon"></i>
+              <i className="far fa-envelope icon"></i>
+            </div>
           </div>
         </div>
       </section>

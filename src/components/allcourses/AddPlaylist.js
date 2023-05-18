@@ -7,25 +7,6 @@ function AddPlaylist() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
-    const [teacherNamesList, setTeacherNamesList] = useState([]);
-    const [selectedTeacher, setSelectedTeacher] = useState("");
-
-    useEffect(() => {
-        const fetchTeacherNames = async () => {
-            try {
-                const res = await axios.get("http://localhost:8000/api/v1/teacher");
-                setTeacherNamesList(res.data);
-                
-            } catch (error) {
-                console.log(error);
-                alert(
-                    "Erreur lors de la récupération des noms des professeurs. Veuillez réessayer."
-                );
-            }
-        };
-
-        fetchTeacherNames();
-    }, []);
 
     const handelchangName = (e) => {
         setName(e.target.value);
@@ -39,21 +20,26 @@ function AddPlaylist() {
         setDescription(e.target.value);
     };
 
-    const handleTeacherNameChange = (e) => {
-        setSelectedTeacher(e.target.value);
-    };
+    
 
     const AjoutPlaylist = async (e) => {
         e.preventDefault();
         try {
+            const userName = localStorage.getItem("UserName");  
+            const conservatoire = localStorage.getItem("conservatoire"); 
+            const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local 
             const res = await axios.post("http://localhost:8000/api/v1/playlists", {
                 title: name,
                 prix: price,
                 description: description,
-                teacherName: selectedTeacher,
+                teacherName: userName,
+                ConservatoireName : conservatoire ,
+            },{
+                headers: {
+                    'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête
+                },
             });
             if (res.status === 201) {
-                console.log("playlist : ", res.data);
                 alert("Playliste ajoutée avec succès !");
                 window.location.href = "/courses";
                 const prix = res.data.prix;
@@ -73,7 +59,7 @@ function AddPlaylist() {
                 <form>
                     <div className="form-group">
                         <label htmlFor="name">
-                            <b>Titre</b>
+                            <b>Titre <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b>
                         </label>
                         <input
                             type="text"
@@ -82,25 +68,8 @@ function AddPlaylist() {
                             onChange={handelchangName}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="teacherName">
-                            <b>Nom du professeur</b>
-                        </label>
-                        <select
-                            id="teacherName"
-                            value={selectedTeacher}
-                            onChange={handleTeacherNameChange}
-                        >
-                            <option value="">Sélectionnez un professeur</option>
-                            {teacherNamesList.map((teacher) => (
-                                <option key={teacher._id} value={teacher.name}>
-                                    {teacher.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="price"><b>Prix de tous les cours</b></label>
+                        <div className="form-group">
+                        <label htmlFor="price"><b>Prix de tous les cours <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <input
                             type="number"
                             id="price"

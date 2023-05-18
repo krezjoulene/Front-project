@@ -2,35 +2,62 @@ import React, { useState, useEffect } from "react";
 import Detailsback from "../Marketplace/background/backdetails";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import defaultProfileImage from "../../images/default-profile-image1.png";
+import "./profile.css";
 
 const TeacherProfile = () => {
-    const { _id } = useParams(); 
-    const [teacher , setteacher] = useState([]);
+  const { teacherId } = useParams();
+  const [teacher, setTeacher] = useState(null);
 
-    const fetchAxios = async () =>{
-      const res = await axios.get(`http://localhost:8000/api/v1/teacher/${_id}`)
-      //console.log(res.data)
-      setteacher(res.data)
+  const fetchTeacher = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8000/api/v1/teacher/${teacherId}`);
+      setTeacher(res.data.data);
+    } catch (error) {
+      console.log(error);
     }
-    console.log("teacher",teacher)
-    useEffect(()=>{
-        fetchAxios();
-    },[])
-  
-        
+  };
+
+  useEffect(() => {
+    fetchTeacher();
+  }, [teacherId]);
+
+  const handleEmailClick = () => {
+    if (teacher && teacher.email) {
+      window.location.href = `mailto:${teacher.email}`;
+    }
+  };
 
   return (
     <>
-    <Detailsback/>
-    {teacher?.map((val) => (
-    <div>
-    <h1>Informations personnelles</h1>
-    <p><b>{val.image}</b></p>
-    <p><b>Nom:</b> {val.name} </p>
-    <p><b>Email</b>{val.email}</p>
-    <button12>Contacter le prof</button12>
-    </div>
-     ))}
+      <Detailsback />
+      {teacher && (
+        <div key={teacher._id}>
+          <div className="profile-container">
+            <div className="profile-image-container">
+              <img
+                src={teacher.image ? teacher.image : defaultProfileImage}
+                alt="Profil"
+                className="profile-image2"
+              />
+            </div>
+            <div className="profile-details">
+              <p>
+                <b>Nom:</b> {teacher.name}
+              </p>
+              <p>
+                <b>Email:</b>{" "}
+                <span className="email-link" onClick={handleEmailClick}>
+                  {teacher.email}
+                </span>
+              </p>
+              <p>
+                <b>Numéro Téléphone : </b> {teacher.phoneNumber}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

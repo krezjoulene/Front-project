@@ -7,7 +7,7 @@ function AddCourse() {
     const [description, setDescription] = useState("");
     const [pdf,setpdf] = useState(null);
     const [video,setvd] = useState(null);
-
+    const [image,setImage] = useState(null);
 
 
     const handelchangName=(e)=>{
@@ -20,22 +20,24 @@ function AddCourse() {
       const AjouterCours=async(e)=>{
          e.preventDefault();
          try {
+            const playlist = localStorage.getItem("id");
             let formData = new FormData();
-            for (let key in video){
-                formData.append('video', video[key]);
-            }
-            for (let key in pdf){
-                formData.append('pdf', pdf[key]);
-            }
-
+            formData.append('pdf', pdf[0]);
+            formData.append('video', video[0]);
+            formData.append('image', image); 
             formData.append('title', name);
             formData.append('description', description);
+            formData.append('playlist', playlist);
 
-            const res = await axios.post("http://localhost:8000/api/v1/cours", formData)
+            const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local 
+            const res = await axios.post("http://localhost:8000/api/v1/cours", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête
+                },
+                })
 
             if(res.status===201){
-                
-              console.log("cours : ",res.data.data);
              alert("Cours ajouté avec succès !");
              window.location.href = "/Allcorses";
              
@@ -53,19 +55,22 @@ function AddCourse() {
     const handleVDChange = (e) => {
         setvd(e.target.files);
     };
-
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
+    };
 
     return (
         <>
             <Detailsback />
             <div className="add-instrument-form">
                 <h2>Ajouter un nouveau cours</h2>
-                <form onSubmit={AjouterCours}>
+                <form >
                     <div className="form-group">
-                        <label htmlFor="name"><b>Titre</b></label>
+                        <label htmlFor="name"><b>Titre <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <input
                             type="text"
                             id="name"
+                            placeholder='Titre de cours '
                             value={name}
                             onChange={handelchangName}
                         />
@@ -80,13 +85,17 @@ function AddCourse() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="PDF"><b>Saisie un PDF file</b></label>
-                        <input type="file" id="pdf" accept="application/pdf"  name="pdf" multiple onChange={handlePDFChange} />
+                        <input type="file" id="pdf" name="pdf" onChange={handlePDFChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="VD"><b>Saisie le vidéo tutoriel</b></label>
-                        <input type="file" id="vd"  accept="video/*" name="video" multiple onChange={handleVDChange} />
+                        <label htmlFor="VD"><b>Saisie le vidéo tutoriel <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
+                        <input type="file" id="video" name="video" onChange={handleVDChange} />
                     </div>
-                    <button type="submit"><b>Ajouter le cours</b></button>
+                    <div className="form-group">
+                        <label htmlFor="image"><b>Image</b></label>
+                        <input type="file" id="image" name="image" onChange={handleImageChange} />
+                    </div>
+                    <button onClick={AjouterCours}><b>Ajouter le cours</b></button>
                 </form>
             </div>
           

@@ -21,7 +21,6 @@ const InstrumentDetails = () => {
     fetchInstrumentDetails(); // Appel de la fonction pour récupérer les détails de l'instrument
   }, [_id]);
 
-  console.log("ID du backend:", _id);
 
   return (
     <>
@@ -35,10 +34,21 @@ const InstrumentDetails = () => {
               <b>Prix: </b>${instrument.price}.00
             </p>
             <p><b>Etat d'instrument : </b>{instrument.etat}</p>
+            {(instrument.phone >0)?(
+              <>
+            <p><b>Numéro du vendeur : </b>{instrument.phone}</p>
             <p className="instru-details-description">
               <b>Description: </b>
               {instrument.description}
             </p>
+            </>
+             ):(
+              <p className="instru-details-description">
+              <b>Description: </b>
+              {instrument.description}
+            </p>
+             )}
+         
           </div>
         </div>
       )}

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Detailsback from "../background/backdetails";
 import axios from "axios";
 import "./Home.css"
+import { Link } from "react-router-dom";
 
 function AddInstrument() {
     const [name, setName] = useState("");
@@ -12,8 +13,7 @@ function AddInstrument() {
     const [image,setImage] = useState(null);
     const [instrumentType, setInstrumentType] = useState("");
     const [instrumentEtat, setInstrumentEtat] = useState("");
-
-
+  
 
     const handelchangName = (e) => {
         setName(e.target.value);
@@ -29,7 +29,6 @@ function AddInstrument() {
     }
     const handelchangetype = (e) => {
         setInstrumentType(e.target.value);
-        console.log("type ",e.target.value)
     }
     const handelchangeetat = (e) => {
         setInstrumentEtat(e.target.value);
@@ -50,13 +49,16 @@ function AddInstrument() {
             formData.append('etat', instrumentEtat);
             formData.append('image', image); // image est la variable d'état contenant l'image sélectionnée
 
-            const res = await axios.post("http://localhost:8000/api/v1/products", formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+            const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local
+
+        const res = await axios.post("http://localhost:8000/api/v1/products", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête
+            },
             })
             if (res.status === 201) {
-                console.log("instrument : ", res.data.data);
+                console.log("instrument : ", res.data);
                 alert("Instrument ajouté avec succès !");
                 window.location.href = "/marketplace";
             }
@@ -76,23 +78,26 @@ function AddInstrument() {
     return (
         <>
             <Detailsback />
+           
             <div className="add-instrument-form">
                 <h2>Ajouter un nouvel instrument</h2>
                 <form encType="multipart/form-data">
                     <div className="form-group">
-                        <label htmlFor="name"><b>Nom</b></label>
+                        <label htmlFor="name"><b>Nom <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <input
                             type="text"
                             id="name"
+                            placeholder="Saisie Nom d'instrument"
                             value={name}
                             onChange={handelchangName}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price"><b>Prix</b></label>
+                        <label htmlFor="price"><b>Prix <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <input
                             type="number"
                             id="price"
+                            placeholder="Saisie le prix d'instrument"
                             value={price}
                             onChange={handelchangPrice}
                         />
@@ -102,6 +107,7 @@ function AddInstrument() {
                         <input
                             type="number"
                             id="quantity"
+                            placeholder="Saisie la quantité"
                             value={qte}
                             onChange={handelchangQuantity}
                         />
@@ -111,12 +117,13 @@ function AddInstrument() {
                         <input
                             type="number"
                             id="phone"
+                            placeholder="Entrer un numéro de téléphone tunisien "
                             value={phone}
                             onChange={handelchangephone}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="type"><b>Type d'instrument</b></label>
+                        <label htmlFor="type"><b>Type d'instrument <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <select id="instrumentType" value={instrumentType} onChange={handelchangetype}>
                             <option value="">Sélectionnez le type d'instrument </option>
                             <option value="644c0611066ad4fe13963714">Guitare</option>
@@ -133,14 +140,14 @@ function AddInstrument() {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="Etat"><b>Etat d'instrument</b></label>
+                        <label htmlFor="Etat"><b>Etat d'instrument <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <select id="instrumentEtat" value={instrumentEtat} onChange={handelchangeetat}>
                             <option value="neuf">Nouveau</option>
                             <option value="occasion">Occasion</option>
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description"><b>Description</b></label>
+                        <label htmlFor="description"><b>Description <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b></label>
                         <textarea
                             id="description"
                             value={description}
@@ -154,7 +161,7 @@ function AddInstrument() {
                     <button onClick={AjoutInstru}><b>Ajouter l'annonce</b></button>
                 </form>
             </div>
-
+         
         </>
     );
 }

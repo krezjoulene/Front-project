@@ -17,15 +17,12 @@ function Sign() {
     }
     const handelchangEamail=(e)=>{
         setemail(e.target.value);
-        console.log(e.target.value)
      }
      const handelchangePassword=(e)=>{
         setmdp(e.target.value);
-        console.log(e.target.value)
      }
      const handelchangePhone=(e)=>{
         settelephone(e.target.value);
-        console.log(e.target.value)
      }
      const handelchangeconfirmPassord=(e)=>{
         setCmdp(e.target.value);
@@ -61,31 +58,27 @@ function Sign() {
           });
     
           if (res.status === 200) {
-             console.log("Login réussi");
-            console.log("hhh",res.data.data.role)
-            const token = res.data.data.token; // Récupérer le jeton d'authentification du back-end
+            const token = res.data.token; // Récupérer le jeton d'authentification du back-end
             const userRole = res.data.data.role; // Récupérer le role de l'utilisateur du back-end
             const userId = res.data.data._id ;
-            console.log('id',userId);
             const userName = res.data.data.name;
             const userEmail = res.data.data.email;
             const userPhone = res.data.data.phoneNumber ;
             const userPassword = res.data.data.password ;
-            console.log("hhh",res.data.data.password)
+            const conservatoire = res.data.data.conservatoire ;
             // Enregistrer le jeton et le role de l'utilisateur dans le stockage local ou les cookies
             setIsLoggedIn(true);
             localStorage.setItem('token', token);
+            console.log('token',token);
             localStorage.setItem('UserRole', userRole);
             localStorage.setItem('UserName',userName);
             localStorage.setItem('UserEmail',userEmail);
             localStorage.setItem('UserPhone', userPhone);
+            console.log("phone :",userPhone)
             localStorage.setItem('UserPassword', userPassword); 
+            localStorage.setItem('conservatoire', conservatoire); 
             localStorage.setItem('UserId',userId);           
-            console.log("llll",userRole)
-            console.log("llll",userName)
-            console.log("llll",userEmail)
-            console.log("llll",userPhone)
-            console.log("llll",userPassword)
+       
             alert("Login réussi");
         window.location.href = "/";
         

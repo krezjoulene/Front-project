@@ -43,15 +43,27 @@
   border-radius: 50%;
   margin-right: 20px;
 }
-.coursesCard .details .box {
+.coursesCard .details .box .prof {
   display: flex;
   align-items: center;
   color: grey;
+  text-decoration: none;
 }
 .coursesCard .details span {
   color: #7C4A15;
+  font-weight: bold;
+  font-size: 15px;
+  display: block; 
+  margin-top: 15px; 
+}
+
+.coursesCard .details span2 {
+  color: #7C4A15;
   font-weight: 500;
   font-size: 14px;
+  display: block; 
+  margin-top: 6px; 
+  text-align: center;
 }
 .coursesCard .price {
   margin: 30px 0;
@@ -84,10 +96,19 @@
   object-fit: cover;
 }
 .online h1 {
+  font-weight: 600;
+  font-size: 20px;
+  margin: 20px 0;
+  line-height: 30px;
+  
+}
+.online h2 {
   font-weight: 500;
   font-size: 20px;
   margin: 20px 0;
   line-height: 30px;
+  color: #7C4A15;
+
 }
 .online span {
   background-color: #f8f8f8;
@@ -96,6 +117,13 @@
   font-size: 15px;
   color: #7C4A15;
   border-radius: 5px;
+  line-height: 6; /* Ajustez la valeur selon vos besoins */
+}
+.online .container .box .para {
+  display: flex;
+  align-items: center;
+  color: grey;
+  text-decoration: none;
 }
 .online .box .show {
   opacity: 0;
@@ -112,6 +140,9 @@
   left: 0;
 }
 .online .box:hover h1 {
+  color: #fff;
+}
+.online .box:hover h2 {
   color: #fff;
 }
 /********** bouton + ********/
@@ -196,6 +227,44 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
+
+/* courses.css */
+.reunion-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.reunion-details-content {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reunion-details-content h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.reunion-details-content p {
+  margin-bottom: 8px;
+}
+
+.reunion-details-content a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #337ab7;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.reunion-details-content a:hover {
+  color: #23527c;
+}
+
 /*-------------online---------*/
 @media screen and (max-width: 768px) {
 }
