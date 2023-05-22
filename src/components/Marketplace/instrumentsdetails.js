@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Detailsback from "./background/backdetails";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 const InstrumentDetails = () => {
   const { _id } = useParams(); // Récupération de l'ID de l'instrument à partir de l'URL
@@ -24,6 +26,7 @@ const InstrumentDetails = () => {
 
   return (
     <>
+        <Header/>
       <Detailsback/>
       {instrument && (
         <div className="instru-details-container">
@@ -52,6 +55,7 @@ const InstrumentDetails = () => {
           </div>
         </div>
       )}
+     <Footer/>
     </>
   );
 };

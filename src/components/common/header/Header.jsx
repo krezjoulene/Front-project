@@ -13,6 +13,7 @@ const Header = () => {
     setUserRole("");
     localStorage.removeItem("token");
   localStorage.removeItem("UserRole");
+
   };
 
   useEffect(() => {

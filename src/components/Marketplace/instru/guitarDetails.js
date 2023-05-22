@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "../instrument.css";
 import Detailsback from "../background/backdetails";
 import axios from "axios";
+import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
 
 
 const GuitarDetails = () => {
@@ -25,6 +27,7 @@ const GuitarDetails = () => {
 
   return (
     <>
+        <Header/>
     <Detailsback/>
     {guitars && (
     <div className="instru-details-container">
@@ -38,6 +41,7 @@ const GuitarDetails = () => {
       </div>
     </div>
     )}
+     <Footer/>
     </>
   );
 };

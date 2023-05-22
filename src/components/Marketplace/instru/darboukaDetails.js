@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "../instrument.css";
 import Detailsback from "../background/backdetails";
 import axios from "axios";import { darbouka } from "../../../dummydata";
+import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
 ;
 
 const DarboukaDetails = () => {
@@ -24,6 +26,7 @@ const DarboukaDetails = () => {
   }, [_id]);
   return (
     <>
+    <Header/>
     <Detailsback/>
     {darboukas && (
     <div className="instru-details-container">
@@ -37,6 +40,7 @@ const DarboukaDetails = () => {
       </div>
     </div>
     )}
+   <Footer/>
     </>
   );
 };

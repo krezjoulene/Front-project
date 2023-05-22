@@ -3,6 +3,8 @@ import Detailsback from "../Marketplace/background/backdetails";
 import axios from "axios";
 import "../Marketplace/MainPage/Home.css";
 import { color, margin } from "@mui/system";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 function AddMeeting() {
   const [name, setName] = useState("");
@@ -69,6 +71,7 @@ function AddMeeting() {
 
   return (
     <>
+        <Header/>
       <Detailsback />
       <div className="add-instrument-form">
         <h2>Ajouter une réunion en ligne</h2>
@@ -145,6 +148,7 @@ function AddMeeting() {
           </button>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }

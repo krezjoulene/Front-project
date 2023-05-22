@@ -5,6 +5,8 @@ import "./courses.css";
 import Detailsback from "../Marketplace/background/backdetails";
 import moment from "moment";
 import 'moment/locale/fr'; // Importez la localisation française de moment
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 moment.locale('fr'); // Définissez la localisation par défaut sur français
 
 const ReunionDetails = () => {
@@ -26,6 +28,7 @@ const ReunionDetails = () => {
 
   return (
     <>
+        <Header/>
       <Detailsback/>
       {reunion && (
         <div className="reunion-details-container">
@@ -40,6 +43,7 @@ const ReunionDetails = () => {
           </div>
         </div>
       )}
+       <Footer/>
     </>
   );
 };

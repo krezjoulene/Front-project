@@ -11,7 +11,6 @@ const Hprice = ({ addToCart })=> {
         <div className='instru shadow grid2 '>
         {instruments.slice(0, 3).map((val) => (
         <div className='items shadow'>
-           <Link to={`/instrument/${val.id}`} className="instrument-link">
           <div className='img'>
             <img src={val.cover} alt='' />
           </div>
@@ -19,7 +18,6 @@ const Hprice = ({ addToCart })=> {
             <h2>{val.name}</h2>
             <p>{val.work}</p>
           </div>
-          </Link>
           <div className='product-details'>
             <div className='rate'>
               <i className='fa fa-star'></i>

@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import Back from "../../common/back/Back"
+import Footer from "../../common/footer/Footer"
+import Header from "../../common/header/Header"
 import "../../Marketplace/instrument.css"
 import Categories from "../MainPage/Categories"
 import PianoCard from "./pianoCard"
@@ -12,6 +14,7 @@ const Pianos = ({addToCart,CartItem}) => {
   })
   return (
     <>
+        <Header/>
       <Back title='Pianos' />
       <section className='search'>
         <div className='container c_flex'>
@@ -50,7 +53,7 @@ const Pianos = ({addToCart,CartItem}) => {
         </div>
       </section>
      
-
+      <Footer/>
     </>
   )
 }

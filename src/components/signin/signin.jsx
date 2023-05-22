@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from 'react';
+import Footer from "../common/footer/Footer";
+import Header from "../common/header/Header";
 import Back from "./back/back";
 import * as Components from './Components';
 
@@ -78,9 +80,17 @@ function Sign() {
             localStorage.setItem('UserPassword', userPassword); 
             localStorage.setItem('conservatoire', conservatoire); 
             localStorage.setItem('UserId',userId);           
-       
-            alert("Login réussi");
+       if (token && userRole==="superadmin") {
+        alert("Login réussi");
+        window.location.href = "dashboard";
+       } else if(token && userRole==="conservatoire"){
+        alert("Login réussi");
+        window.location.href = "dashboard2";
+       }else{
+        alert("Login réussi");
         window.location.href = "/";
+       }
+       
         
           }
         } catch (error) {
@@ -93,6 +103,7 @@ function Sign() {
 
     return (
         <>
+            <Header/>
             <Back />
             <Components.Container>
                 <Components.SignUpContainer signinIn={signIn}>
@@ -144,6 +155,8 @@ function Sign() {
                 </Components.OverlayContainer>
 
             </Components.Container>
+
+            <Footer/>
         </>
     )
 }

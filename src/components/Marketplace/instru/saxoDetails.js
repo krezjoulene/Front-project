@@ -2,7 +2,9 @@ import React ,{useEffect , useState} from "react";
 import { useParams } from "react-router-dom";
 import "../instrument.css";
 import Detailsback from "../background/backdetails";
-import axios from "axios";;
+import axios from "axios";import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
+;
 
 const SaxoDetails = () => {
   const { _id } = useParams(); // Récupération de l'ID de l'instrument à partir de l'URL
@@ -23,6 +25,7 @@ const SaxoDetails = () => {
   }, [_id]);
   return (
     <>
+    <Header/>
     <Detailsback/>
     {saxos && (
     <div className="instru-details-container">
@@ -36,6 +39,7 @@ const SaxoDetails = () => {
       </div>
     </div>
     )}
+     <Footer/>
     </>
   );
 };

@@ -3,6 +3,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  
 }
 body {
   font-family: "Roboto", sans-serif;
@@ -351,6 +352,13 @@ button {
   background: #7C4A15;
   color: white;
   cursor: pointer;
+}
+
+/*********/
+.app.dark {
+  background-color: #111;
+  color: rgb(156, 156, 156);
+
 }
 
 /***********/

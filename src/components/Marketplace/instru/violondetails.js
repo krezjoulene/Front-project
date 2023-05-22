@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "../instrument.css";
 import Detailsback from "../background/backdetails";
 import axios from "axios";
+import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
 
 const Violondetails = () => {
   const { _id } = useParams(); // Récupération de l'ID de l'instrument à partir de l'URL
@@ -23,6 +25,7 @@ const Violondetails = () => {
   }, [_id]);
   return (
     <>
+    <Header/>
     <Detailsback/>
     {violon && (
     <div className="instru-details-container">
@@ -36,6 +39,7 @@ const Violondetails = () => {
       </div>
     </div>
     )}
+     <Footer/>
     </>
   );
 };

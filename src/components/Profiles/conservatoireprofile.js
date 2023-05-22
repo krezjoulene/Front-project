@@ -4,6 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import defaultProfileImage from "../../images/default-profile-image1.png";
 import "./profile.css";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 const ConservatoireProfile = () => {
   const { ConsId } = useParams();
@@ -28,6 +30,7 @@ const ConservatoireProfile = () => {
 
   return (
     <>
+        <Header/>
       <Detailsback />
       {conservatoire && (
         <div key={conservatoire._id}>
@@ -56,6 +59,7 @@ const ConservatoireProfile = () => {
           </div>
         </div>
       )}
+       <Footer/>
     </>
   );
 };

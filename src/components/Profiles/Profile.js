@@ -3,6 +3,8 @@ import Detailsback from "../Marketplace/background/backdetails";
 import "./profile.css";
 import defaultProfileImage from "../../images/default-profile-image1.png";
 import axios from "axios";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 const Profile = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -73,6 +75,7 @@ const Profile = () => {
 
   return (
     <>
+      <Header/>
       <Detailsback />
       <div className="profile-container">
         <div className="profile-image-container">
@@ -137,6 +140,7 @@ const Profile = () => {
       <button onClick={saveChanges}>Enregistrer</button>
       </div>
       </div> 
+      <Footer/>
     </>
   );
 };

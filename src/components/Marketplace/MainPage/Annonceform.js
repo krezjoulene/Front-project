@@ -3,6 +3,8 @@ import Detailsback from "../background/backdetails";
 import axios from "axios";
 import "./Home.css"
 import { Link } from "react-router-dom";
+import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
 
 function AddInstrument() {
     const [name, setName] = useState("");
@@ -77,6 +79,8 @@ function AddInstrument() {
 
     return (
         <>
+            <Header/>
+
             <Detailsback />
            
             <div className="add-instrument-form">
@@ -161,7 +165,7 @@ function AddInstrument() {
                     <button onClick={AjoutInstru}><b>Ajouter l'annonce</b></button>
                 </form>
             </div>
-         
+            <Footer/> 
         </>
     );
 }

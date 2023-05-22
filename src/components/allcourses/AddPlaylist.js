@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Detailsback from "../Marketplace/background/backdetails";
 import axios from "axios";
 import "../Marketplace/MainPage/Home.css";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 function AddPlaylist() {
     const [name, setName] = useState("");
@@ -53,6 +55,7 @@ function AddPlaylist() {
 
     return (
         <>
+            <Header/>
             <Detailsback />
             <div className="add-instrument-form">
                 <h2>Ajouter une nouvelle Playliste</h2>
@@ -90,7 +93,7 @@ function AddPlaylist() {
                     <button onClick={AjoutPlaylist}><b>Ajouter la playliste</b></button>
                 </form>
             </div>
-
+            <Footer/>
         </>
     );
 }

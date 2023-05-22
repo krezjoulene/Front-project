@@ -1,5 +1,7 @@
 import React from "react"
 import Back from "../../common/back/Back"
+import Footer from "../../common/footer/Footer"
+import Header from "../../common/header/Header"
 import "./style.css"
 
 const Cart = ({ CartItem, addToCart, decreaseQty, removeCartItem }) => {
@@ -9,6 +11,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeCartItem }) => {
   // Total de la quantité de produit
   return (
     <>
+        <Header/>
       <Back title="Panier" />
       <section className='cart-items'>
         <div className='container d_flex'>
@@ -64,6 +67,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty, removeCartItem }) => {
       </div>
     </div>
   </section>
+  <Footer/>
 </>
 
   )

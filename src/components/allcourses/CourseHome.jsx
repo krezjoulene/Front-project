@@ -3,6 +3,8 @@ import Back from "../common/back/Back";
 import CoursesCard from "./CoursesCard";
 import OnlineCourses from "./OnlineCourses";
 import { Link } from "react-router-dom";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 const CourseHome = () => {
   window.addEventListener("scroll", function () {
@@ -34,6 +36,7 @@ const CourseHome = () => {
 
   return (
     <>
+      <Header/>
       <Back title="Explorer les cours" />
       <section className='search'>
         <div className='container c_flex'>
@@ -79,6 +82,7 @@ const CourseHome = () => {
       </section>
       <CoursesCard />
       <OnlineCourses />
+      <Footer/>
     </>
   );
 };

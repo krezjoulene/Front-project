@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import "../instrument.css";
 import Detailsback from "../background/backdetails";
 import axios from "axios";
+import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
 
 const TambourDetails = () => {
   const { _id } = useParams(); // Récupération de l'ID de l'instrument à partir de l'URL
@@ -24,6 +26,7 @@ const TambourDetails = () => {
 
   return (
     <>
+    <Header/>
     <Detailsback/>
     {tambour && (
     <div className="instru-details-container">
@@ -37,6 +40,7 @@ const TambourDetails = () => {
       </div>
     </div>
     )}
+     <Footer/>
     </>
   );
 };

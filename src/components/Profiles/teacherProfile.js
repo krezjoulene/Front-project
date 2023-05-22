@@ -4,6 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import defaultProfileImage from "../../images/default-profile-image1.png";
 import "./profile.css";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 const TeacherProfile = () => {
   const { teacherId } = useParams();
@@ -30,6 +32,7 @@ const TeacherProfile = () => {
 
   return (
     <>
+        <Header/>
       <Detailsback />
       {teacher && (
         <div key={teacher._id}>
@@ -58,6 +61,7 @@ const TeacherProfile = () => {
           </div>
         </div>
       )}
+       <Footer/>
     </>
   );
 };
