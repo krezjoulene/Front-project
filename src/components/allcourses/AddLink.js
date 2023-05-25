@@ -62,7 +62,7 @@ function AddMeeting() {
 
       console.log("reunion : ", res.data);
       alert("Lien Meet ajouté avec succès !");
-      window.location.href = "/";
+      window.location.href = "/courses";
     } catch (error) {
       console.log(error);
       alert("Erreur lors de l'ajout de le lien meet. Veuillez réessayer.");

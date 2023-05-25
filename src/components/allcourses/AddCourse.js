@@ -8,6 +8,7 @@ function AddCourse() {
   const [pdf, setpdf] = useState(null);
   const [video, setvd] = useState(null);
   const [image, setImage] = useState(null);
+  const playlist = localStorage.getItem("PlaylistId");
 
   const handelchangName = (e) => {
     setName(e.target.value);
@@ -19,7 +20,6 @@ function AddCourse() {
   const AjouterCours = async (e) => {
     e.preventDefault();
     try {
-      const playlist = localStorage.getItem("id");
 
       let formData = new FormData(); // Déplacer la déclaration de formData ici
       formData.append("pdf", pdf[0]);
@@ -39,7 +39,7 @@ function AddCourse() {
 
       if (res.status === 201) {
         alert("Cours ajouté avec succès !");
-        window.location.href = `/playlist/:${playlist}`;
+        window.location.href = `/playlists/:${playlist}`;
       }
     } catch (error) {
       console.log(error);

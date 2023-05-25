@@ -232,7 +232,7 @@ const CoursesCard = () => {
                   <div className="text">
                   {(isLoggedIn && userRole === "teacher") ? (
                     <>
-                    <Link to={`/playlist/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
+                    <Link to={`/playlists/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
                       <h1>{val.title}</h1>
                     </Link>
                     <div className="rate">

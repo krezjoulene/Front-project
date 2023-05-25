@@ -108,7 +108,7 @@ if (url ) {
                     <div className='dropdown'>
                       <ul>
                         <li>
-                          <a href="/ajouterInstrument">Ajouter une playlist</a>
+                          <a href="/ajouterPlaylist">Ajouter une playlist</a>
                         </li>
                         <li>
                           <a href="/ajouterLien">Ajouter un lien meet</a>

@@ -130,10 +130,9 @@ function App() {
             <Route exact path='/courses' component={CourseHome} />
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/form' component={AddInstrument} />
-            <Route exact path='/ajouterInstrument' component={AddPlaylist} />
+            <Route exact path='/ajouterPlaylist' component={AddPlaylist} />
             <Route exact path='/ajouterLien' component={AddMeeting} />
             <Route exact path='/Allcorses' component={AddCourse} />
-            <Route path="/playlist/:_id" component={AllCorses} />
             <Route exact path='/UserPlaylist' component={UserPlaylist} />            
             <Route exact path='/teacherprofile/:teacherId' component={TeacherProfile} />
             <Route exact path='/conservatoire/:ConsId' component={ConservatoireProfile} />
@@ -179,6 +178,7 @@ function App() {
             <Route exact path='/6454e2852b3142cdafa936b7' >
               <Darbouka CartItem={CartItem} addToCart={addToCart} />
             </Route>
+            <Route path="/playlists/:_id" component={AllCorses} />
             <Route
             path="/playlist/:id/"
             render={() => <Redirect to="/playlist/:_id" />}
