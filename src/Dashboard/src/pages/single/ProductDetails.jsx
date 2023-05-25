@@ -34,16 +34,16 @@ const ProductDetails = () => {
           <div className="top">
             <div className="left">
               <Link to={`/product/update/${product._id}`}>
-                <div className="editButton">Edit</div>
+                <div className="editButton">Modifier</div>
               </Link>
-              <h1 className="title">Information</h1>
+              <h1 className="title">Informations</h1>
 
               <div className="item">
                 <img src={product.image} alt="" className="itemImg" />
                 <div className="details">
                   <h1 className="itemTitle">{product.title}</h1>
                   <div className="detailItem">
-                    <span className="itemKey">Description :</span>
+                    <span className="itemKey">Déscription :</span>
                     <span className="itemValue">{product.description}</span>
                   </div>
                   <div className="detailItem">

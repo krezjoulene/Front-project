@@ -19,9 +19,9 @@ const Footer = () => {
       <footer>
         <div className='container padding'>
           <div className='box logo'>
-            <h1>ACADEMIA</h1>
+          <img src="images/IMG-20230523-WA0000-removebg-preview.png" alt="Logo"></img>
             <span>ENSEIGNEMENT ET APPRENTISSAGE EN LIGNE</span>
-            <p>Academia - Plateforme en ligne de formation musicale et de vente d'instruments, pour tous les niveaux.</p>
+            <p>HyperMusic - Plateforme en ligne de formation musicale et de vente d'instruments, pour tous les niveaux.</p>
 
             <i className='fab fa-facebook-f icon'></i>
             <i className='fab fa-twitter icon'></i>
@@ -53,7 +53,7 @@ const Footer = () => {
               </li>
               <li>
                 <i className='fa fa-paper-plane'></i>
-                contact@gmail.com
+                HyperDev@gmail.com
               </li>
             </ul>
           </div>

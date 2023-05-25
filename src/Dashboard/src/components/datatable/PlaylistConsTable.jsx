@@ -5,14 +5,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { PlaylistColumns } from "../../datatablesource";
 
-const Tableplaylists = () => {
+const TableplaylistsCons = () => {
   
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/playlists");
+        const Conservatoire = localStorage.getItem("UserId");
+        const response = await axios.get(`http://localhost:8000/api/v1/playlists/conservatoireId/${Conservatoire}`);
         setData(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des playlists :", error);
@@ -59,7 +60,7 @@ const Tableplaylists = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Ajouter une nouvelle playlist
-        <Link to="/newPlaylist" className="link">
+        <Link to="/playlists/new" className="link">
           Ajouter
         </Link>
       </div>
@@ -77,4 +78,4 @@ const Tableplaylists = () => {
   );
 };
 
-export default Tableplaylists;
+export default TableplaylistsCons;

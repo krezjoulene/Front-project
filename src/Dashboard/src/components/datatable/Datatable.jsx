@@ -34,10 +34,6 @@ const Datatable = () => {
       console.error("Erreur lors de la suppression de l'utilisateur :", error);
     }
   };
-  
-  
-  
-
 
   const actionColumn = [
     {
@@ -48,28 +44,24 @@ const Datatable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/users/${id}`}  style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/users/${id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">
-              <span onClick={() => handleDelete(id)}>Delete</span>
+              <span onClick={() => handleDelete(id)}>Supprimer</span>
             </div>
           </div>
         );
       },
     },
   ];
-  
 
-
-  
-  
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/new" className="link">
-          Add New
+        Ajouter un nouvel utilisateur
+        <Link to="/newUser" className="link">
+          Ajouter
         </Link>
       </div>
       <DataGrid
@@ -81,7 +73,6 @@ const Datatable = () => {
         checkboxSelection
         selectionModel={selectedIds}
         onSelectionModelChange={setSelectedIds}
-        
       />
     </div>
   );

@@ -28,6 +28,7 @@ function AddPlaylist() {
         e.preventDefault();
         try {
             const userName = localStorage.getItem("UserName");  
+            const userId = localStorage.getItem("UserId");  
             const conservatoire = localStorage.getItem("conservatoire"); 
             const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local 
             const res = await axios.post("http://localhost:8000/api/v1/playlists", {
@@ -35,7 +36,8 @@ function AddPlaylist() {
                 prix: price,
                 description: description,
                 teacherName: userName,
-                ConservatoireName : conservatoire ,
+                conservatoireName : conservatoire ,
+                user : userId,
             },{
                 headers: {
                     'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête

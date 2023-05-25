@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./App.css"
 import Header from "./components/common/header/Header"
-import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, BrowserRouter, Redirect } from "react-router-dom"
 import About from "./components/about/About"
 import CourseHome from "./components/allcourses/CourseHome"
 import Contact from "./components/contact/Contact"
@@ -44,8 +44,6 @@ import Page404 from "./Errpage"
 
 
 
-import Login from "./Dashboard/src/pages/login/Login";
-import List from "./Dashboard/src/pages/list/List";
 import Single from "./Dashboard/src/pages/single/Single";
 import New from "./Dashboard/src/pages/new/New";
 
@@ -75,6 +73,17 @@ import ListUser from "./Dashboard/src/pages/list/List"
 import { DarkModeContext } from "./components/context/darkModeContext"
 import AdminProfile from "./Dashboard/src/pages/Profile/Profile"
 import "./style/dark.scss"
+import InstrumentUpdate from "./components/Marketplace/Updateinstrument"
+import TeacherConservatoireTable from "./Dashboard/src/components/datatable/ConservatoireTeacher"
+import ListConsTeacher from "./Dashboard/src/pages/list/ListConsTeacher"
+import ConsPlaylist from "./Dashboard/src/pages/list/ConsPlaylist"
+import ConsProfile from "./Dashboard/src/pages/Profile/ConsProfile"
+import UserPlaylist from "./components/allcourses/UserPLaylists"
+import ListMeetings from "./Dashboard/src/pages/list/ListMeeting"
+import UpdateMeetings from "./Dashboard/src/pages/Update/MeetingUpdate"
+import { MeetingColumns } from "./Dashboard/src/datatablesource"
+import MeetingDetails from "./Dashboard/src/pages/single/MeetingDetails"
+import NewReunion from "./Dashboard/src/pages/new/NewMeeting"
 function App() {
   const [CartItem, setCartItem] = useState([])
 
@@ -112,7 +121,7 @@ function App() {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
-
+    <div className={darkMode ? "app dark" : "app"}>
       <Router>
         <Switch>
           <Route path="">
@@ -124,11 +133,17 @@ function App() {
             <Route exact path='/ajouterInstrument' component={AddPlaylist} />
             <Route exact path='/ajouterLien' component={AddMeeting} />
             <Route exact path='/Allcorses' component={AddCourse} />
+            <Route path="/playlist/:_id" component={AllCorses} />
+            <Route exact path='/UserPlaylist' component={UserPlaylist} />            
             <Route exact path='/teacherprofile/:teacherId' component={TeacherProfile} />
             <Route exact path='/conservatoire/:ConsId' component={ConservatoireProfile} />
             <Route exact path='/marketplace' >
               <Instruments CartItem={CartItem} addToCart={addToCart} />
             </Route>
+            <Route
+            path="/marketplace*"
+            render={() => <Redirect to="/marketplace" />}
+          />
             <Route exact path='/contact' component={Contact} />
             <Route exact path='/signin' component={Sign} />
             <Route path='/cart' exact>
@@ -164,7 +179,10 @@ function App() {
             <Route exact path='/6454e2852b3142cdafa936b7' >
               <Darbouka CartItem={CartItem} addToCart={addToCart} />
             </Route>
-            <Route path="/playlist/:_id" component={AllCorses} />
+            <Route
+            path="/playlist/:id/"
+            render={() => <Redirect to="/playlist/:_id" />}
+          />
             <Route path="/reunion/:_id" component={ReunionDetails} />
             <Route path="/instrument/:_id" render={(props) => <InstrumentDetails {...props} />} />
             <Route path="/644c0611066ad4fe13963714/:_id" component={GuitarDetails} />
@@ -177,66 +195,73 @@ function App() {
             <Route path="/6454e25f2b3142cdafa936b1/:id" component={SaxoDetails} />
             <Route path="/6454e2702b3142cdafa936b4/:id" component={TrompetteDetails} />
             <Route path="/6454e2852b3142cdafa936b7/:id" component={DarboukaDetails} />
+            <Route path="/UpdateProduct/:_id" component={InstrumentUpdate}/>
 
-            
-            <div className={darkMode ? "app dark" : "app"}>
+            <Route path="/AdminProfileConservatoire" component={ConsProfile}/>
+
+            <Route path="/conservatoireplaylists" component={ConsPlaylist} />
+
+            <Route path="/conservatoireteachers" component={ListConsTeacher} />
+            <Route path="/meetings/update/:_id" render={() =><UpdateMeetings title="Modifier Le Réunion" />} ></Route>
+            <Route
+                path="/newMeeting"
+                render={() =><NewReunion title="Ajouter un nouveau Réunion" />}
+              />
+            <Route path="/meetings/:_id" component={MeetingDetails} />
+            <Route path="/meetings" component={ListMeetings} />
+
               <Route path="/AdminProfile" component={AdminProfile}/>
             <Route path="/conservatoire/update/:_id" render={() =><Updateconservatoire title="Modifier Le conservatoire" />} ></Route>
             <Route
-                path="/new"
-                render={() =><NewConservatoire title="Add New Conservatoire" />}
+                path="/newConservatoire"
+                render={() =><NewConservatoire title="Ajouter Conservatoire" />}
               />
             <Route path="/conservatoires/:_id" component={ConservatoireDetails} />
             <Route path="/conservatoires" component={ListConservatoire} />
 
             <Route path="/courses/:_id" render={() =><CourseDetails />} />
-            <Route path="/new/:_id" render={() =><NewCourse title="Add New Course" />} />
+            <Route path="/newcourse/:_id" render={() =><NewCourse title="Ajouter Cours" />} />
             <Route path="/cour/update/:id" render={() =><UpdateCourse title="Modifier Le cours" />} ></Route>
-            <Route path="/playlist/update/:id" render={() =><UpdatePlaylist title="Modifier La playlist" />} ></Route>
+            <Route path="/playlistupdate/:id" render={() =><UpdatePlaylist title="Modifier La playlist" />} ></Route>
             <Route
-                path="/new"
-                render={() =><NewPlaylist title="Add New Playlist" />}
+                path="/newPlaylist"
+                render={() =><NewPlaylist title="Ajouter Playlist" />}
               />
             <Route path="/playlists/:_id" component={PlaylistDetails} />
             <Route path="/playlists" component={PlaylistList} />
             
            <Route path="/teacher/update/:id" render={() =><UpdateTeacher title="Modifier L'enseignant" />} ></Route>
             <Route
-                path="/new"
-                render={() =><NewTeacher title="Add New Teacher" />}
+                path="/newTeacher"
+                render={() =><NewTeacher title="Ajouter un Prof" />}
               />
            <Route path="/teachers/:id"component={TeacherDetails} />
            <Route path="/teachers" component={ListTeacher} />
            
             <Route path="/product/update/:id" render={() =><UpdateProduct title="Modifier Le produit" />} ></Route>
             <Route
-                path="/new"
-                render={() =><NewProduct title="Add New Product" />}
+                path="/newProduct"
+                render={() =><NewProduct title="Ajouter Produit" />}
               />
             <Route path="/products/:id" component={ProductDetails}  />
             <Route path="/products" component={ListProduct} />
            
             <Route path="/update/:id" render={() => <UpdateUser title="Modifier l'utilisateur" />} ></Route>
             <Route
-              path="/new"
-              render={() => <New title="Add New User" />}
+              path="/newUser"
+              render={() => <New title="Ajouter un  Utilisateur" />}
             />
-            <Route path="/users/:id" component={Single} ></Route>
+            <Route path="/users/:id" render={()=><Single/>} />
             <Route path="/users" component={ListUser} />
             <Route path="/dashboard" component={DashboardHome} />
-
-
-
-
-        
-            </div>
+          
 
           </Route>
 
         </Switch>
 
       </Router>
-
+  </div>
   )
 }
 

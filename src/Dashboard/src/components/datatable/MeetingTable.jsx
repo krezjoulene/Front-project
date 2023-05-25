@@ -1,21 +1,20 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
+import { MeetingColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { PlaylistColumns } from "../../datatablesource";
 
-const Tableplaylists = () => {
-  
+const MeetingTable = () => {
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/v1/playlists");
+        const response = await axios.get("http://localhost:8000/api/v1/reunions");
         setData(response.data);
       } catch (error) {
-        console.error("Erreur lors de la récupération des playlists :", error);
+        console.error("Erreur lors de la récupération des Réunions :", error);
       }
     };
 
@@ -24,16 +23,16 @@ const Tableplaylists = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/v1/playlists/${id}`);
-      setData((prevData) => prevData.filter((playlist) => playlist.id !== id));
+      await axios.delete(`http://localhost:8000/api/v1/reunions/${id}`);
+      setData((prevData) => prevData.filter((teacher) => teacher.id !== id));
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
-      alert("Playlist supprimée avec succès !");
-      window.location.href = "/playlists";
+      alert("Réunion supprimée avec succès !");
+      window.location.href = "/meetings";
     } catch (error) {
-      console.error("Erreur lors de la suppression de la playlist :", error);
+      console.error("Erreur lors de la suppression de la Réunion :", error);
     }
   };
-  
+
   const actionColumn = [
     {
       field: "action",
@@ -43,7 +42,7 @@ const Tableplaylists = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/playlists/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/meetings/${id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">
@@ -54,19 +53,19 @@ const Tableplaylists = () => {
       },
     },
   ];
-  
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Ajouter une nouvelle playlist
-        <Link to="/newPlaylist" className="link">
+        Ajouter une nouvelle réunion
+        <Link to="/newMeeting" className="link">
           Ajouter
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data.map((val) => ({ id: val._id, ...val }))}
-        columns={PlaylistColumns.concat(actionColumn)}
+        columns={MeetingColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
@@ -77,4 +76,4 @@ const Tableplaylists = () => {
   );
 };
 
-export default Tableplaylists;
+export default MeetingTable;

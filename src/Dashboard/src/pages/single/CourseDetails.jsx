@@ -35,9 +35,9 @@ const CourseDetails = () => {
                     <div className="top">
                         <div className="left">
                             <Link to={`/cour/update/${cour._id}`}>
-                                <div className="editButton">Edit</div>
+                                <div className="editButton">Modifier</div>
                             </Link>
-                            <h1 className="title">Information</h1>
+                            <h1 className="title">Informations</h1>
 
                             <div className="item">
                                 <div className="details">

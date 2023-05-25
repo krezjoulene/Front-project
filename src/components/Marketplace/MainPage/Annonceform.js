@@ -41,6 +41,7 @@ function AddInstrument() {
     const AjoutInstru = async (e) => {
         e.preventDefault();
         try {
+            const userId = localStorage.getItem("UserId");
             const formData = new FormData();
             formData.append('title', name);
             formData.append('price', price);
@@ -49,6 +50,7 @@ function AddInstrument() {
             formData.append('description', description);
             formData.append('category', instrumentType);
             formData.append('etat', instrumentEtat);
+            formData.append('userId', userId);
             formData.append('image', image); // image est la variable d'état contenant l'image sélectionnée
 
             const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local
@@ -62,6 +64,8 @@ function AddInstrument() {
             if (res.status === 201) {
                 console.log("instrument : ", res.data);
                 alert("Instrument ajouté avec succès !");
+                localStorage.setItem('userid',userId)
+            
                 window.location.href = "/marketplace";
             }
         } catch (error) {

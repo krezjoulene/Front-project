@@ -31,9 +31,9 @@ const Home2 = ({ CartItem }) => {
   return (
     <>
          <section className='search'>
-        <div className='container c_flex'>
+         <div className='container c_flex' style={{marginTop:"-15px"}}>
           <div>
-            <h1>logo</h1>
+          <img src="images/IMG-20230523-WA0000-removebg-preview.png" alt="Logo" style={{width:"110px" }}></img>
           </div>
 
           <div className='search-box f_flex'>

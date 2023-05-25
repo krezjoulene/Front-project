@@ -34,7 +34,7 @@ const Header = () => {
       <header>
         <nav className="flexSB">
           <div className="logo">
-            <h1>logo</h1>
+          <img src="images/IMG-20230523-WA0000-removebg-preview.png" alt="Logo"></img>
           </div>
           <button className="toggle" onClick={() => setClick(!click)}>
             {click ? <i className="fa fa-times"> </i> : <i className="fa fa-bars"></i>}

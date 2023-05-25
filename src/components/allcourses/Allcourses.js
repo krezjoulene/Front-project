@@ -10,18 +10,21 @@ const AllCorses = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState("");
   const { _id } = useParams();
-  localStorage.setItem('id', _id)
-  console.log(_id)
-  //http://localhost:8000/api/v1/cours?playlist=${_id}
+  localStorage.setItem('PlaylistId', _id)
 
   useEffect(() => {
     const fetchCoursByPlaylist = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/v1/cours?playlist=${_id}`);
-        setcours(res.data.data);
+        const response = await axios.get(`http://localhost:8000/api/v1/cours/ByplaylistId/${_id}`);
+        if (Array.isArray(response.data)) {
+          setcours(response.data);
+        } else {
+          setcours([]);
+        }
       } catch (error) {
-        console.log(error);
+        console.error("Erreur lors de la récupération des cours :", error);
       }
+
       const token = localStorage.getItem("token");
       const userRole = localStorage.getItem("UserRole");
 
@@ -59,14 +62,18 @@ const AllCorses = () => {
       ) : (
         <>
           {cours.map((val) => (
-            <div className="instru-details-container">
-              <div className="instru-details-content">
-                <h1 className="">{val.title}</h1>
-                <video className="" controls style={{ width: '400px', height: 'auto' }}>
-                  <source src={val.video} type="video/mp4" />
-                </video>             
-            </div>
-            </div>
+           <div className="instru-details-container">
+           <div className="instru-details-content">
+             <h1 className="">{val.title}</h1>
+             <p>{val.description}</p>
+             <video className="" controls style={{ width: '400px', height: 'auto' }}>
+               <source src={val.video} type="video/mp4" />
+             </video>
+             <p><b>Ressource : </b></p>
+             <a href={val.pdf} target="_blank" rel="noopener noreferrer" ><u>Télécharger le PDF</u></a>
+             
+           </div>
+         </div>
           ))}
         </>
       )}

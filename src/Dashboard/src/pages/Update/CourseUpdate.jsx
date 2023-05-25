@@ -61,9 +61,15 @@ const UpdateCourse = ({ title }) => {
             formData.append("image", image);
             formData.append("pdf", pdf);
             formData.append("video", video);
+
+            const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local
+
+
             const res = await axios.put(`http://localhost:8000/api/v1/cours/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête
+
                 },
             });
 
@@ -75,7 +81,7 @@ const UpdateCourse = ({ title }) => {
             }
         } catch (error) {
             console.log(error);
-            alert("Erreur lors de la modification du cour. Veuillez réessayer.");
+            alert("Erreur lors de la modification du cours. Veuillez réessayer.");
         }
     };
 
@@ -95,7 +101,7 @@ const UpdateCourse = ({ title }) => {
                             <form enctype="multipart/form-data">
 
                                 <div className="formInput">
-                                    <label htmlFor="name">Name:</label>
+                                    <label htmlFor="name">Nom:</label>
                                     <input
                                         type="text"
                                         id="name"
@@ -107,7 +113,7 @@ const UpdateCourse = ({ title }) => {
                                 </div>
 
                                 <div className="formInput">
-                                    <label htmlFor="description">description:</label>
+                                    <label htmlFor="description">Déscription:</label>
                                     <input
                                         type="description"
                                         id="description"
@@ -119,7 +125,7 @@ const UpdateCourse = ({ title }) => {
                                 </div>
 
                                 <div className="formInput">
-                                    <label htmlFor="pdf">pdf:</label>
+                                    <label htmlFor="pdf">PDF:</label>
                                     <input
                                         type="file"
                                         id="pdf"
@@ -129,7 +135,7 @@ const UpdateCourse = ({ title }) => {
                                 </div>
 
                                 <div className="formInput">
-                                    <label htmlFor="file">video:</label>
+                                    <label htmlFor="file">Vidéo:</label>
                                     <input
                                         type="file"
                                         id="file"

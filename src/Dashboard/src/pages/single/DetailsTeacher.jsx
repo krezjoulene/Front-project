@@ -35,9 +35,9 @@ const TeacherDetails = () => {
           {teacher.map((val)=>(
             <>
             <Link to={`/teacher/update/${val._id}`}>
-            <div className="editButton">Edit</div>
+            <div className="editButton">Modifier</div>
             </Link>
-            <h1 className="title">Information</h1>
+            <h1 className="title">Informations</h1>
            
             <div className="item">
               <img
@@ -52,7 +52,7 @@ const TeacherDetails = () => {
                   <span className="itemValue">{val.email}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
+                  <span className="itemKey">Téléphone:</span>
                   <span className="itemValue">{val.phoneNumber}</span>
                 </div>
                 <div className="detailItem">
@@ -72,14 +72,11 @@ const TeacherDetails = () => {
             </>
              ))}
           </div>
-          <div className="right">
-            <Chart aspect={3 / 1} title="teacher Spending ( Last 6 Months)" />
-          </div>
+        
         </div>
        
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
-          <List/>
+          <Chart aspect={3 / 1} title="Product Spending (Last 6 Months)" />
         </div>
       </div>
     </div>

@@ -65,9 +65,14 @@ const Updateconservatoire = ({ title }) => {
             formData.append("phoneNumber", telephone);
             formData.append("adressconservatoire", conservatoire);
 
+            const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local
+
+
             const res = await axios.put(`http://localhost:8000/api/v1/conservatoire/${_id}`, formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "multipart/form-data",            
+                    'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête
+
                 },
             });
 
@@ -115,7 +120,7 @@ const Updateconservatoire = ({ title }) => {
                                 </div>
 
                                 <div className="formInput">
-                                    <label htmlFor="name">Name:</label>
+                                    <label htmlFor="name">Nom:</label>
                                     <input
                                         type="text"
                                         id="name"
@@ -141,7 +146,7 @@ const Updateconservatoire = ({ title }) => {
 
 
                                 <div className="formInput">
-                                    <label htmlFor="phone">Phone:</label>
+                                    <label htmlFor="phone">Téléphone:</label>
                                     <input
                                         type="text"
                                         id="phone"

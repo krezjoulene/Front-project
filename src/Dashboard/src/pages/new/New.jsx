@@ -7,67 +7,70 @@ import axios from "axios";
 
 const New = ({ title }) => {
   const [image, setImage] = useState(null);
-  const [Name, setName] = React.useState("");
-  const [email, setemail] = React.useState("");
-  const [telephone, settelephone] = React.useState("");
-  const [mdp, setmdp] = React.useState("");
-  const [Cmdp, setCmdp] = React.useState("");
-  const [role, setrole] = React.useState("")
+  const [nom, setNom] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [telephone, setTelephone] = React.useState("");
+  const [mdp, setMdp] = React.useState("");
+  const [cmdp, setCmdp] = React.useState("");
+  const [role, setRole] = React.useState("");
 
-  const handelchangName = (e) => {
-    setName(e.target.value);
-  }
-  const handelchangEamail = (e) => {
-    setemail(e.target.value);
-  }
-  const handelchangePassword = (e) => {
-    setmdp(e.target.value);
-  }
-  const handelchangePhone = (e) => {
-    settelephone(e.target.value);
-  }
-  const handelchangeRole = (e) => {
-    setrole(e.target.value);
-  }
-  const handelchangeconfirmPassord = (e) => {
+  const handleChangeNom = (e) => {
+    setNom(e.target.value);
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setMdp(e.target.value);
+  };
+
+  const handleChangeTelephone = (e) => {
+    setTelephone(e.target.value);
+  };
+
+  const handleChangeRole = (e) => {
+    setRole(e.target.value);
+  };
+
+  const handleChangeConfirmPassword = (e) => {
     setCmdp(e.target.value);
-  }
+  };
+
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
-  const AjoutInstru = async (e) => {
+
+  const ajouterUtilisateur = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('name', Name);
+      formData.append('nom', nom);
       formData.append('email', email);
       formData.append('role', role);
-      formData.append('phoneNumber', telephone);
-      formData.append('password', mdp);
-      formData.append('passwordConfirm', Cmdp)
-      formData.append('image', image); // image est la variable d'état contenant l'image sélectionnée
-      //const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local
+      formData.append('numTelephone', telephone);
+      formData.append('motDePasse', mdp);
+      formData.append('confirmerMotDePasse', cmdp);
+      formData.append('image', image);
+      const token = localStorage.getItem("token");
 
       const res = await axios.post("http://localhost:8000/api/v1/user", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          // 'Authorization': `Bearer ${token}` // Ajoutez le token d'accès dans l'en-tête de requête
+          'Authorization': `Bearer ${token}`
         },
-
-      })
-      console.log("333333333333333333333333333333");
+      });
 
       if (res.status === 201) {
-        console.log("User : ", res.data.data);
         alert("Utilisateur ajouté avec succès !");
         window.location.href = "/users";
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       alert("Erreur lors de l'ajout de l'utilisateur. Veuillez réessayer.");
     }
-  }
-
+  };
 
   return (
     <div className="new">
@@ -92,88 +95,90 @@ const New = ({ title }) => {
             <form encType="multipart/form-data">
               <div className="formInput">
                 <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  Image : <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
                 <input
                   type="file"
                   id="file"
-                  name="image" // Assurez-vous que le nom est correctement défini
+                  name="image"
                   onChange={handleImageChange}
                   style={{ display: "none" }}
                 />
-
               </div>
 
               <div className="formInput">
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="nom">Nom :</label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Enter name"
-                  value={Name}
-                  onChange={handelchangName}
+                  id="nom"
+                  name="nom"
+                  placeholder="Entrez le nom"
+                  value={nom}
+                  onChange={handleChangeNom}
                 />
               </div>
 
               <div className="formInput">
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">Email :</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Enter email"
+                  placeholder="Entrez l'e-mail"
                   value={email}
-                  onChange={handelchangEamail}
+                  onChange={handleChangeEmail}
                 />
               </div>
 
               <div className="formInput">
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Mot de passe :</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Enter password"
+                  placeholder="Entrez le mot de passe"
                   value={mdp}
-                  onChange={handelchangePassword}
+                  onChange={handleChangePassword}
                 />
               </div>
+
               <div className="formInput">
-                <label htmlFor="phone">Phone:</label>
+                <label htmlFor="phone">Téléphone :</label>
                 <input
                   type="text"
                   id="phone"
                   name="phone"
-                  placeholder="Enter phone"
+                  placeholder="Entrez le téléphone"
                   value={telephone}
-                  onChange={handelchangePhone}
+                  onChange={handleChangeTelephone}
                 />
               </div>
+
               <div className="formInput">
-                <label htmlFor="password">Confirmer Password:</label>
+                <label htmlFor="password">Confirmer le mot de passe :</label>
                 <input
                   type="password"
                   id="Cpassword"
                   name="Cpassword"
-                  placeholder="Confirm password"
-                  value={Cmdp}
-                  onChange={handelchangeconfirmPassord}
+                  placeholder="Confirmez le mot de passe"
+                  value={cmdp}
+                  onChange={handleChangeConfirmPassword}
                 />
               </div>
+
               <div className="formInput">
-                <label htmlFor="role">Role:</label>
+                <label htmlFor="role">Rôle :</label>
                 <input
                   type="text"
                   id="role"
                   name="role"
-                  placeholder="Enter role"
+                  placeholder="Entrez le rôle"
                   value={role}
-                  onChange={handelchangeRole}
+                  onChange={handleChangeRole}
                 />
               </div>
 
-              <button onClick={AjoutInstru}>Send</button>
+              <button onClick={ajouterUtilisateur}>Envoyer</button>
             </form>
           </div>
         </div>

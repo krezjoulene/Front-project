@@ -12,7 +12,7 @@ const TeacherTable = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/v1/teacher");
-        console.log("teacher", response.data);
+        console.log("enseignant", response.data);
         setData(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des enseignants :", error);
@@ -34,10 +34,6 @@ const TeacherTable = () => {
     }
   };
   
-  
-  
-
-
   const actionColumn = [
     {
       field: "action",
@@ -47,11 +43,11 @@ const TeacherTable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/teachers/${id}`}  style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/teachers/${id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">
-              <span onClick={() => handleDelete(id)}>Delete</span>
+              <span onClick={() => handleDelete(id)}>Supprimer</span>
             </div>
           </div>
         );
@@ -59,16 +55,12 @@ const TeacherTable = () => {
     },
   ];
   
-
-
-  
-  
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New teacher
-        <Link to="/teachers/new" className="link">
-          Add New
+        Ajouter un nouvel enseignant
+        <Link to="/newTeacher" className="link">
+          Ajouter
         </Link>
       </div>
       <DataGrid
@@ -80,7 +72,6 @@ const TeacherTable = () => {
         checkboxSelection
         selectionModel={selectedIds}
         onSelectionModelChange={setSelectedIds}
-        
       />
     </div>
   );

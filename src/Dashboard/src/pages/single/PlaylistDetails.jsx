@@ -25,9 +25,9 @@ const PlaylistDetails = () => {
         };
         const fetchcours = async () => {
             try {
-              const response = await axios.get(`http://localhost:8000/api/v1/cours?playlist=${_id}`);
-              if (Array.isArray(response.data.data)) {
-                setCourses(response.data.data);
+              const response = await axios.get(`http://localhost:8000/api/v1/cours/ByplaylistId/${_id}`);
+              if (Array.isArray(response.data)) {
+                setCourses(response.data);
               } else {
                 setCourses([]);
               }
@@ -61,10 +61,10 @@ const PlaylistDetails = () => {
                 return (
                     <div className="cellAction">
                         <Link to={`/courses/${id}`} style={{ textDecoration: "none" }}>
-                            <div className="viewButton">View</div>
+                            <div className="viewButton">Voir</div>
                         </Link>
                         <div className="deleteButton">
-                            <span onClick={() => handleDeleteCourse(id)}>Delete</span>
+                            <span onClick={() => handleDeleteCourse(id)}>Supprimer</span>
                         </div>
                     </div>
                 );
@@ -81,17 +81,16 @@ const PlaylistDetails = () => {
                 {playlist && (
                     <div className="top">
                         <div className="left">
-                            <Link to={`/playlist/update/${playlist._id}`}>
-                                <div className="editButton">Edit</div>
+                            <Link to={`/playlistupdate/${playlist._id}`}>
+                                <div className="editButton">Modifier</div>
                             </Link>
-                            <h1 className="title">Information</h1>
+                            <h1 className="title">Informations</h1>
 
                             <div className="item">
-                                <img src={playlist.image} alt="" className="itemImg" />
                                 <div className="details">
                                     <h1 className="itemTitle">{playlist.title}</h1>
                                     <div className="detailItem">
-                                        <span className="itemKey">Description :</span>
+                                        <span className="itemKey">Déscription :</span>
                                         <span className="itemValue">{playlist.description}</span>
                                     </div>
                                     <div className="detailItem">
@@ -116,8 +115,8 @@ const PlaylistDetails = () => {
                 <div className="bottom">
                     <div className="datatable">
                         <div className="datatableTitle">
-                            Courses
-                            <Link to={`/new/${_id}`} className="link">Add New Course</Link>
+                            Cours
+                            <Link to={`/newcourse/${_id}`} className="link">Ajouter Nouveau Cours</Link>
                         </div>
                         <DataGrid
                             className="datagrid"

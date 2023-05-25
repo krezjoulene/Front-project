@@ -163,3 +163,32 @@ export const CourseColumns = [
  
 ];
 
+export const MeetingColumns = [
+  { field: "_id", headerName: "ID", width: 70 },
+  {
+    field: "title",
+    headerName: "Nom",
+    width: 200,
+   
+  },
+  {
+    field: "description",
+    headerName: "Déscription",
+    width: 150,
+  },
+  {
+    field: "date",
+    headerName: "Date",
+    width: 100,
+  },
+  {
+    field: "time",
+    headerName: "Heure",
+    width: 100,
+  },
+  {
+    field: "lien",
+    headerName: "Lien",
+    width: 150,
+  },
+];

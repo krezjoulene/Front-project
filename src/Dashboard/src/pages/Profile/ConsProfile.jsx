@@ -5,24 +5,27 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const AdminProfile = () => {
+const ConsProfile = () => {
     const [image, setImage] = useState(null);
     const [ Name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
+    const [Adresse, setAdresse] = useState("");
+    const [Phone, setPhone] = useState("");
 
     const [data, setData] = useState(null);
     const id = localStorage.getItem('UserId');  
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/v1/superAdmin/${id}`);
+                const response = await axios.get(`http://localhost:8000/api/v1/conservatoire/${id}`);
                 const userData = response.data;
                 setData(userData);
                 setName(userData.name);
                 setEmail(userData.email);
                 setRole(userData.role);
-                console.log(userData)
+                setAdresse(userData.adressconservatoire)
+                setPhone(userData.phoneNumber)
             } catch (error) {
                 console.error("Erreur lors de la récupération des utilisateurs :", error);
             }
@@ -43,9 +46,13 @@ const AdminProfile = () => {
         setEmail(e.target.value);
     };
 
-
+    const handleAdresseChange = (e) => {
+        setAdresse(e.target.value);
+    };
  
-
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value);
+    };
     const handleRoleChange = (e) => {
         setRole(e.target.value);
     };
@@ -57,10 +64,12 @@ const AdminProfile = () => {
             formData.append("name", Name);
             formData.append("email", email);
             formData.append("role", role);
+            formData.append("adressconservatoire", Adresse);
+            formData.append("phoneNumber",Phone)
             const token = localStorage.getItem("token"); // Récupère le token d'accès depuis le stockage local
 
 
-            const res = await axios.put(`http://localhost:8000/api/v1/superAdmin/${id}`, formData,
+            const res = await axios.put(`http://localhost:8000/api/v1/conservatoire/${id}`, formData,
             {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -69,7 +78,7 @@ const AdminProfile = () => {
             });
                 console.log("User: ", res.data);
                 alert("Informations modifié avec succès !");
-                window.location.href = "/AdminProfile";
+                window.location.href = "/dashboard";
             
         } catch (error) {
             console.log(error);
@@ -108,7 +117,7 @@ const AdminProfile = () => {
                                 </div>
 
                                 <div className="formInput">
-                                    <label htmlFor="name">Nom:</label>
+                                    <label htmlFor="name">Nom :</label>
                                     <input
                                         type="text"
                                         id="name"
@@ -141,7 +150,28 @@ const AdminProfile = () => {
                                         onChange={handleRoleChange}
                                     />
                                 </div>
-
+                                <div className="formInput">
+                                    <label htmlFor="Adresse">Adress du Conservatoire:</label>
+                                    <input
+                                        type="text"
+                                        id="Adresse"
+                                        name="Adresse"
+                                        placeholder="Enter Adresse"
+                                        value={Adresse}
+                                        onChange={handleAdresseChange}
+                                    />
+                                </div>
+                                <div className="formInput">
+                                    <label htmlFor="Phone">Numéro du Conservatoire:</label>
+                                    <input
+                                        type="text"
+                                        id="Phone"
+                                        name="Phone"
+                                        placeholder="Enter Phone"
+                                        value={Phone}
+                                        onChange={handlePhoneChange}
+                                    />
+                                </div>
                                 <button onClick={updateUser}>Enregistrer</button>
                             </form>
                         </div>
@@ -152,4 +182,4 @@ const AdminProfile = () => {
     );
 };
 
-export default AdminProfile;
+export default ConsProfile;

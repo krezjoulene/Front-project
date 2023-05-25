@@ -47,10 +47,10 @@ const ConservatoireTable = () => {
         return (
           <div className="cellAction">
             <Link to={`/conservatoires/${id}`}  style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton" onClick={()=>window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">
-              <span onClick={() => handleDelete(id)}>Delete</span>
+              <span onClick={() => handleDelete(id)}>Supprimer</span>
             </div>
           </div>
         );
@@ -65,9 +65,9 @@ const ConservatoireTable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New conservatoire
-        <Link to="/conservatoires/new" className="link">
-          Add New
+        Ajouter un nouveau conservatoire
+        <Link to="/newConservatoire" className="link">
+          Ajouter
         </Link>
       </div>
       <DataGrid

@@ -15,7 +15,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import PianoIcon from '@mui/icons-material/Piano';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../../../components/context/darkModeContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -27,43 +27,54 @@ const Sidebar = () => {
     setIsLoggedIn(false);
     setUserRole("");
     localStorage.removeItem("token");
-  localStorage.removeItem("UserRole");
-  window.location.href = "/";
+    localStorage.removeItem("UserRole");
+    window.location.href = "/";
   };
+  useEffect(() => {
 
+    const token = localStorage.getItem("token");
+    const userRole = localStorage.getItem("UserRole");
+    if (token && userRole) {
+      setIsLoggedIn(true);
+      setUserRole(userRole);
+    }
+  }, []);
   return (
     <div className="sidebar">
-      <div className="top">
-          <span className="logo">Logo</span>
+      <div className="top2">
+      <img src="images/IMG-20230523-WA0000-removebg-preview.png" alt="Logo" style={{width:"150px"}}></img>
         
       </div>
-      <hr />
+      <hr /> 
+      {(isLoggedIn && userRole === "superadmin") ? (
+           <>
       <div className="center">
+     
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">PRINCIPAL</p>
           <Link to="/dashboard" style={{ textDecoration: "none" }}>
           <li>
             <DashboardIcon className="icon2" />
-            <span>Dashboard</span>
+            <span>Tableau de bord</span>
           </li>
           </Link>
-          <p className="title">LISTS</p>
+          <p className="title">LISTES</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon2" />
-              <span>Users</span>
+              <span>Utilisateurs</span>
             </li>
           </Link>
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon2" />
-              <span>Products</span>
+              <span>Produits</span>
             </li>
           </Link>
           <Link to="/teachers" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon2" />
-              <span>Enseignant</span>
+              <span>Enseignants</span>
             </li>
           </Link>
           <Link to="/playlists" style={{ textDecoration: "none" }}>
@@ -72,18 +83,21 @@ const Sidebar = () => {
               <span>Cours</span>
             </li>
           </Link>
+          <Link to="/meetings" style={{ textDecoration: "none" }}>
+            <li>
+              <SchoolIcon className="icon2" />
+              <span>Réunions en ligne</span>
+            </li>
+          </Link>
           <Link to="/conservatoires" style={{ textDecoration: "none" }}>
             <li>
               <PianoIcon className="icon2" />
               <span>Conservatoires</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon2" />
-            <span>Orders</span>
-          </li>
+          
         
-          <p className="title">USEFUL</p>
+          <p className="title">UTILE</p>
           <li>
           <a href="http://localhost:1080/#/" target="_blank" rel="noopener noreferrer">
             <NotificationsNoneIcon className="icon2" />
@@ -91,16 +105,16 @@ const Sidebar = () => {
             </a>
           </li>
       
-          <p className="title">USER</p>
+          <p className="title">UTILISATEUR</p>
           <li>
             <Link to="/AdminProfile">
             <AccountCircleOutlinedIcon className="icon2" />
-            <span>Profile</span>
+            <span>Profil</span>
             </Link>
           </li>
           <li>
             <ExitToAppIcon className="icon2" />
-            <span><div onClick={handleLogout}>Logout</div></span>
+            <span><div onClick={handleLogout}>Se déconnecter</div></span>
           </li>
         </ul>
       </div>
@@ -114,13 +128,73 @@ const Sidebar = () => {
           onClick={() => dispatch({ type: "DARK" })}
         ></div>
       </div>
+          </>
+          ):(
+<>
+      <div className="center">
+     
+        <ul>
+          <p className="title">PRINCIPAL</p>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+          <li>
+            <DashboardIcon className="icon2" />
+            <span>Tableau de bord</span>
+          </li>
+          </Link>
+          <p className="title">LISTES</p>
+          <Link to="/conservatoireteachers" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon2" />
+              <span>Enseignants</span>
+            </li>
+          </Link>
+          <Link to="/conservatoireplaylists" style={{ textDecoration: "none" }}>
+            <li>
+              <SchoolIcon className="icon2" />
+              <span>Cours</span>
+            </li>
+          </Link>
+          <Link to="/meetings" style={{ textDecoration: "none" }}>
+            <li>
+              <SchoolIcon className="icon2" />
+              <span>Réunions en ligne</span>
+            </li>
+          </Link>
+          <p className="title">UTILE</p>
+          <li>
+          <a href="http://localhost:1080/#/" target="_blank" rel="noopener noreferrer">
+            <NotificationsNoneIcon className="icon2" />
+            <span>Notifications</span>
+            </a>
+          </li>
+      
+          <p className="title">UTILISATEUR</p>
+          <li>
+            <Link to="/AdminProfileConservatoire">
+            <AccountCircleOutlinedIcon className="icon2" />
+            <span>Profil</span>
+            </Link>
+          </li>
+          <li>
+            <ExitToAppIcon className="icon2" />
+            <span><div onClick={handleLogout}>Se déconnecter</div></span>
+          </li>
+        </ul>
+      </div>
+      <div className="bottom">
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "LIGHT" })}
+        ></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "DARK" })}
+        ></div>
+      </div>
+          </>
+          )}
     </div>
   );
 };
 
 export default Sidebar;
-/*   <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
-*/

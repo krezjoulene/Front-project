@@ -5,6 +5,7 @@ import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
 import "./Dashboard.scss"
+import { List } from "@mui/material";
 
 const DashboardHome = () => {
   return (
@@ -20,11 +21,11 @@ const DashboardHome = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+          <Chart title="Derniers 6 mois (Revenus)" aspect={2 / 1} />
         </div>
         <div className="listContainer">
-          <div className="listTitle">Latest Products</div>
-          <Table />
+          <div className="listTitle">Derniers Produits</div>
+          <List />
         </div>
       </div>
     </div>

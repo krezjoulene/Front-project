@@ -13,10 +13,10 @@ const TableProduct = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/v1/products");
-        console.log("product", response.data);
+        console.log("produit", response.data);
         setData(response.data);
       } catch (error) {
-        console.error("Erreur lors de la récupération des utilisateurs :", error);
+        console.error("Erreur lors de la récupération des produits :", error);
       }
     };
 
@@ -28,7 +28,6 @@ const TableProduct = () => {
       await axios.delete(`http://localhost:8000/api/v1/products/${id}`);
       setData((prevData) => prevData.filter((product) => product.id !== id));
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
-      console.log("produit supprimé avec succès !");
       alert("Produit supprimé avec succès !");
       window.location.href = "/products";
     } catch (error) {
@@ -36,10 +35,6 @@ const TableProduct = () => {
     }
   };
   
-  
-  
-
-
   const actionColumn = [
     {
       field: "action",
@@ -49,11 +44,11 @@ const TableProduct = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/products/${id}`}  style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">
-              <span onClick={() => handleDelete(id)}>Delete</span>
+              <span onClick={() => handleDelete(id)}>Supprimer</span>
             </div>
           </div>
         );
@@ -61,16 +56,12 @@ const TableProduct = () => {
     },
   ];
   
-
-
-  
-  
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New product
-        <Link to="/products/new" className="link">
-          Add New
+        Ajouter un nouveau produit
+        <Link to="newProduct" className="link">
+          Ajouter
         </Link>
       </div>
       <DataGrid
@@ -82,7 +73,6 @@ const TableProduct = () => {
         checkboxSelection
         selectionModel={selectedIds}
         onSelectionModelChange={setSelectedIds}
-        
       />
     </div>
   );

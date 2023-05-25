@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Detailsback from "../Marketplace/background/backdetails";
 import axios from "axios";
-import Header from "../common/header/Header";
-import Footer from "../common/footer/Footer";
 
 function AddCourse() {
   const [name, setName] = useState("");
@@ -35,13 +33,13 @@ function AddCourse() {
       const res = await axios.post("http://localhost:8000/api/v1/cours", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
       if (res.status === 201) {
         alert("Cours ajouté avec succès !");
-        window.location.href = "/Allcorses";
+        window.location.href = `/playlist/:${playlist}`;
       }
     } catch (error) {
       console.log(error);
@@ -61,7 +59,6 @@ function AddCourse() {
 
   return (
     <>
-        <Header/>
       <Detailsback />
       <div className="add-instrument-form">
         <h2>Ajouter un nouveau cours</h2>
@@ -103,7 +100,6 @@ function AddCourse() {
           </button>
         </form>
       </div>
-      <Footer/>
     </>
   );
 }

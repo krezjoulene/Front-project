@@ -4,6 +4,19 @@ import "./courses.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
+const onSubmit = async (e, amount,playlistId) => {
+  e.preventDefault();
+  const userId = localStorage.getItem("UserId");
+
+  await axios
+    .post("/api/test", { amount,playlistId,userId }) // Pass the amount as a parameter in the request body
+    .then((res) => {
+      const { result } = res.data;
+      window.location.href = result.link;
+    })
+    .catch((err) => console.error(err));
+};
 const CoursesCard = () => {
   const [playlist, setPlaylist] = useState([]);
   const [userRole, setUserRole] = useState("");
@@ -106,7 +119,7 @@ const CoursesCard = () => {
   
     if (filters.cons && filters.cons.size > 0) {
       filteredPlaylists = filteredPlaylists.filter((playlist) =>
-        filters.cons.has(playlist.ConservatoireName)
+        filters.cons.has(playlist.conservatoireName)
       );
     }
   
@@ -123,7 +136,7 @@ const CoursesCard = () => {
   const filteredPlaylists = filterPlaylists();
 
   const uniqueTeachers = [...new Set(playlist.map((playlist) => playlist.teacherName))];
-  const uniqueConservatoires = [...new Set(playlist.map((playlist) => playlist.ConservatoireName))];
+  const uniqueConservatoires = [...new Set(playlist.map((playlist) => playlist.conservatoireName))];
 
   return (
     <section className="container d_flex">
@@ -188,8 +201,11 @@ const CoursesCard = () => {
             ))}
           </div>
           <div className="filter-group">
-            <h4>Les conservatoire :</h4>
-            {uniqueConservatoires.map((cons) => (
+          <h3>Conservatoire</h3>
+          {uniqueConservatoires.map((cons) => {
+            const conservatoireName = conservatoires.find((conservatoire) => conservatoire._id === cons)?.
+              name;
+            return (
               <label key={cons}>
                 <input
                   type="checkbox"
@@ -197,18 +213,18 @@ const CoursesCard = () => {
                   value={cons}
                   onChange={handleFilterChange}
                 />
-                {cons}
+                {conservatoireName}
               </label>
-            ))}
-          </div>
+            );
+          })}
+        </div>
         </div>
       </section>
       <section className="coursesCard">
         <div className="container grid2">
           {filteredPlaylists.map((val) => {
             const teacherId = teachers.find((teacher) => teacher.name === val.teacherName)?._id;
-            const ConsId = conservatoires.find((cons) => cons.name === val.ConservatoireName)?._id;
-           
+            const ConsId = conservatoires.find((cons) => cons._id === val.conservatoireName)?.name;
             return (
               <div className="items shadow" key={val._id}>
                 <div className="content flex">
@@ -230,7 +246,6 @@ const CoursesCard = () => {
                   <div className="details">
                     <div className="box">
                     <div className='dimg'>
-                        <img src={val.image} alt='' />
                       </div>
                         <div className="para">
                           <Link to={`/teacherprofile/${teacherId}`} onClick={() => window.scrollTo(0, 0)} className="prof">
@@ -238,8 +253,8 @@ const CoursesCard = () => {
                           </Link>
                       </div>
                     </div>
-                    <Link to={`/conservatoire/${ConsId}`} onClick={() => window.scrollTo(0, 0)}>
-                    <span><b>Sous le conservatoire : </b><span2>{val.ConservatoireName}</span2></span>
+                    <Link to={`/conservatoire/${val.conservatoireName}`} onClick={() => window.scrollTo(0, 0)}>
+                    <span><b>Sous le conservatoire : </b><span2>{ConsId}</span2></span>
                     </Link>
                   </div>
                   </>
@@ -257,7 +272,6 @@ const CoursesCard = () => {
                     <div className="details">
                       <div className="box">
                       <div className='dimg'>
-                        <img src={val.image} alt='' />
                       </div>
                         <div className="para">
                           <Link to={`/teacherprofile/${teacherId}`} onClick={() => window.scrollTo(0, 0)} className="prof">
@@ -265,8 +279,8 @@ const CoursesCard = () => {
                           </Link>
                         </div>
                       </div>
-                      <Link to={`/conservatoire/${ConsId}`} onClick={() => window.scrollTo(0, 0)}>
-                    <span><b>Sous le conservatoire : </b><span2>{val.ConservatoireName}</span2></span>
+                      <Link to={`/conservatoire/${val.conservatoireName}`} onClick={() => window.scrollTo(0, 0)}>
+                    <span><b>Sous le conservatoire : </b><span2>{ConsId}</span2></span>
                     </Link>
                     </div>
                     </>
@@ -276,9 +290,18 @@ const CoursesCard = () => {
                 <div className="price">
                   <h3>${val.prix} tous les cours</h3>
                 </div>
-                <button className="outline-btn">INSCRIVEZ-VOUS MAINTENANT!</button>
+                {(isLoggedIn && (userRole === "user" || userRole === "teacher" )) ? (
+                <button className='outline-btn' onClick={(e) => onSubmit(e, val.prix * 1000, val._id)}>
+                    INSCRIVEZ-VOUS MAINTENANT!
+                </button>
+                ):(
+                  <Link to="signin">
+                  <button className='outline-btn' >
+                  INSCRIVEZ-VOUS MAINTENANT!
+              </button>
+              </Link>
+                )}
               </div>
-              
             );
           })}
         </div>
