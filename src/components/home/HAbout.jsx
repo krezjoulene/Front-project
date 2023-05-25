@@ -21,12 +21,11 @@ const HAbout = () => {
       <section className='homeAbout'>
         <div className='container'>
         <Link to='/courses' onClick={() => window.scrollTo(0, 0)}><Heading subtitle='nos cours' title='découvrez nos cours en ligne populaires' /></Link>
-          <div className='coursesCard'>
-            {/* copy code form  coursesCard */}
-            <div className='grid2'>
+        <div className="coursesCard">
+        <div className="container grid2">
               {playlist.slice(0, 3).map((val) => (
-                <div className='items'>
-                  <div className='content flex'>
+                <div className='items shadow '>
+                  <div className='content flex' >
                     <div className='left'>
                     <h1>{val.title}</h1>
                     <div className="rate">
@@ -40,13 +39,11 @@ const HAbout = () => {
                     <div className="details">
                       <div className="box">
                       <div className='dimg'>
-                        <img src={val.image} alt='' />
                       </div>
                         <div className="para">
                           <h4> <b>Par : </b> {val.teacherName} </h4>                          
                         </div>
                       </div>
-                    <span><b>Sous le conservatoire : </b><span2>{val.ConservatoireName}</span2></span>
                     </div>
              
                   </div>

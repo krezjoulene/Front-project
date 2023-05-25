@@ -79,7 +79,7 @@ const Updateconservatoire = ({ title }) => {
 
             if (res.status === 200) {
                 alert("Conservatoire modifié avec succès !");
-                window.location.href = "/conservatoires";
+                window.location.href = "/Dashconservatoires";
             }
         } catch (error) {
             console.log(error);

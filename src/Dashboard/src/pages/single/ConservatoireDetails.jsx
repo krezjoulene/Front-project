@@ -34,7 +34,7 @@ const ConservatoireDetails = () => {
           <div className="left">
             {conservatoire.map((val) => (
               <>
-                <Link to={`/conservatoire/update/${val._id}`}>
+                <Link to={`/Dashconservatoire/update/${val._id}`}>
                   <div className="editButton">Modifier</div>
                 </Link>
                 <h1 className="title">Informations</h1>

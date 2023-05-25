@@ -29,7 +29,7 @@ const Datatable = () => {
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
       console.log("Utilisateur supprimé avec succès !");
       alert("Utilisateur supprimé avec succès !");
-      window.location.href = "/users";
+      window.location.href = "/Dashusers";
     } catch (error) {
       console.error("Erreur lors de la suppression de l'utilisateur :", error);
     }
@@ -44,7 +44,7 @@ const Datatable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/users/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/Dashusers/${id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">

@@ -33,7 +33,7 @@ const ProductDetails = () => {
         {product && (
           <div className="top">
             <div className="left">
-              <Link to={`/product/update/${product._id}`}>
+              <Link to={`/Dashproduct/update/${product._id}`}>
                 <div className="editButton">Modifier</div>
               </Link>
               <h1 className="title">Informations</h1>

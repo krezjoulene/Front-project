@@ -24,7 +24,6 @@ const Home2 = ({ CartItem }) => {
     if (token && userRole) {
       setIsLoggedIn(true);
       setUserRole(userRole);
-      console.log("kkkk",userRole)
     }
   }, []);
 

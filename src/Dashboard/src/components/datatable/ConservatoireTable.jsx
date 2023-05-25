@@ -27,7 +27,7 @@ const ConservatoireTable = () => {
       setData((prevData) => prevData.filter((conservatoire) => conservatoire.id !== id));
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
       alert("Conservatoire supprimé avec succès !");
-      window.location.href = "/conservatoires";
+      window.location.href = "/Dashconservatoires";
     } catch (error) {
       console.error("Erreur lors de la suppression du conservatoire :", error);
     }
@@ -46,7 +46,7 @@ const ConservatoireTable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/conservatoires/${id}`}  style={{ textDecoration: "none" }}>
+            <Link to={`/Dashconservatoires/${id}`}  style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={()=>window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">

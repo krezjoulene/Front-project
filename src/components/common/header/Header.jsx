@@ -24,11 +24,9 @@ const Header = () => {
     if (token && userRole) {
       setIsLoggedIn(true);
       setUserRole(userRole);
-      console.log("kkkk",userRole)
     }
   }, []);
 
-   console.log("isLoggedIn:", isLoggedIn, "userRole:", userRole);
   return (
     <>
       <header>

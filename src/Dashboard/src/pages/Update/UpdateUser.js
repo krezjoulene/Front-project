@@ -78,7 +78,7 @@ const UpdateUser = ({ title }) => {
             if (res.status === 200) {
                 console.log("User: ", res.data);
                 alert("Utilisateur modifié avec succès !");
-                window.location.href = "/users";
+                window.location.href = `/Dashusers/${id}`;
             }
         } catch (error) {
             console.log(error);

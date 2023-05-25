@@ -8,7 +8,7 @@ const Footer = () => {
       <section className='newletter'>
         <div className='container flexSB'>
           <div className='left row'>
-            <h1>Newsletter - Restez à l'écoute et obtenez les dernières mises à jour</h1>
+            <h1> Restez à l'écoute et obtenez les dernières mises à jour</h1>
           </div>
           <div className='right row'>
             <input type='text' placeholder="Entrez l'adresse e-mail" />

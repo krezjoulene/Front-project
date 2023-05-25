@@ -34,7 +34,7 @@ const Single = () => {
           <div className="left">
           {user.map((val)=>(
             <>
-            <Link to={`/update/${val._id}`}>
+            <Link to={`/updateUsers/${val._id}`}>
             <div className="editButton">Modifier</div>
             </Link>
             <h1 className="title">Informations</h1>

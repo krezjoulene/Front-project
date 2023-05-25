@@ -132,7 +132,7 @@ function App() {
             <Route exact path='/form' component={AddInstrument} />
             <Route exact path='/ajouterPlaylist' component={AddPlaylist} />
             <Route exact path='/ajouterLien' component={AddMeeting} />
-            <Route exact path='/Allcorses' component={AddCourse} />
+            <Route exact path='/Addcorses' component={AddCourse} />
             <Route exact path='/UserPlaylist' component={UserPlaylist} />            
             <Route exact path='/teacherprofile/:teacherId' component={TeacherProfile} />
             <Route exact path='/conservatoire/:ConsId' component={ConservatoireProfile} />
@@ -188,13 +188,13 @@ function App() {
             <Route path="/644c0611066ad4fe13963714/:_id" component={GuitarDetails} />
             <Route path="/644c0ae86fd044576c704483/:_id" component={PianoDetails} />
             <Route path="/644daad111bd2335dccc3927/:_id" component={AccordDetails} />
-            <Route path="/644dadf41e37dbe85c5b5360/:id" component={Violondetails} />
-            <Route path="/6450f15d5e85f86c0f7cd964/:id" component={VioloncelleDetails} />
-            <Route path="/6454e2ae2b3142cdafa936be/:id" component={TambourDetails} />
-            <Route path="/6454e1f22b3142cdafa936ab/:id" component={OudDetails} />
-            <Route path="/6454e25f2b3142cdafa936b1/:id" component={SaxoDetails} />
-            <Route path="/6454e2702b3142cdafa936b4/:id" component={TrompetteDetails} />
-            <Route path="/6454e2852b3142cdafa936b7/:id" component={DarboukaDetails} />
+            <Route path="/644dadf41e37dbe85c5b5360/:_id" component={Violondetails} />
+            <Route path="/6450f15d5e85f86c0f7cd964/:_id" component={VioloncelleDetails} />
+            <Route path="/6454e2ae2b3142cdafa936be/:_id" component={TambourDetails} />
+            <Route path="/6454e1f22b3142cdafa936ab/:_id" component={OudDetails} />
+            <Route path="/6454e25f2b3142cdafa936b1/:_id" component={SaxoDetails} />
+            <Route path="/6454e2702b3142cdafa936b4/:_id" component={TrompetteDetails} />
+            <Route path="/6454e2852b3142cdafa936b7/:_id" component={DarboukaDetails} />
             <Route path="/UpdateProduct/:_id" component={InstrumentUpdate}/>
 
             <Route path="/AdminProfileConservatoire" component={ConsProfile}/>
@@ -202,57 +202,57 @@ function App() {
             <Route path="/conservatoireplaylists" component={ConsPlaylist} />
 
             <Route path="/conservatoireteachers" component={ListConsTeacher} />
-            <Route path="/meetings/update/:_id" render={() =><UpdateMeetings title="Modifier Le Réunion" />} ></Route>
+            <Route path="/Dashmeetings/update/:_id" render={() =><UpdateMeetings title="Modifier Le Réunion" />} ></Route>
             <Route
                 path="/newMeeting"
                 render={() =><NewReunion title="Ajouter un nouveau Réunion" />}
               />
-            <Route path="/meetings/:_id" component={MeetingDetails} />
-            <Route path="/meetings" component={ListMeetings} />
+            <Route path="/Dashmeetings/:_id" component={MeetingDetails} />
+            <Route path="/Dashmeetings" component={ListMeetings} />
 
               <Route path="/AdminProfile" component={AdminProfile}/>
-            <Route path="/conservatoire/update/:_id" render={() =><Updateconservatoire title="Modifier Le conservatoire" />} ></Route>
+            <Route path="/Dashconservatoire/update/:_id" render={() =><Updateconservatoire title="Modifier Le conservatoire" />} ></Route>
             <Route
                 path="/newConservatoire"
                 render={() =><NewConservatoire title="Ajouter Conservatoire" />}
               />
-            <Route path="/conservatoires/:_id" component={ConservatoireDetails} />
-            <Route path="/conservatoires" component={ListConservatoire} />
+            <Route path="/Dashconservatoires/:_id" component={ConservatoireDetails} />
+            <Route path="/Dashconservatoires" component={ListConservatoire} />
 
-            <Route path="/courses/:_id" render={() =><CourseDetails />} />
+            <Route path="/Dashcourses/:_id" render={() =><CourseDetails />} />
             <Route path="/newcourse/:_id" render={() =><NewCourse title="Ajouter Cours" />} />
-            <Route path="/cour/update/:id" render={() =><UpdateCourse title="Modifier Le cours" />} ></Route>
-            <Route path="/playlistupdate/:id" render={() =><UpdatePlaylist title="Modifier La playlist" />} ></Route>
+            <Route path="/Dashcour/update/:id" render={() =><UpdateCourse title="Modifier Le cours" />} ></Route>
+            <Route path="/Dashplaylistupdate/:id" render={() =><UpdatePlaylist title="Modifier La playlist" />} ></Route>
             <Route
                 path="/newPlaylist"
                 render={() =><NewPlaylist title="Ajouter Playlist" />}
               />
-            <Route path="/playlists/:_id" component={PlaylistDetails} />
-            <Route path="/playlists" component={PlaylistList} />
+            <Route path="/Dashplaylists/:_id" component={PlaylistDetails} />
+            <Route path="/Dashplaylists" component={PlaylistList} />
             
-           <Route path="/teacher/update/:id" render={() =><UpdateTeacher title="Modifier L'enseignant" />} ></Route>
+           <Route path="/Dashteacher/update/:id" render={() =><UpdateTeacher title="Modifier L'enseignant" />} ></Route>
             <Route
                 path="/newTeacher"
                 render={() =><NewTeacher title="Ajouter un Prof" />}
               />
-           <Route path="/teachers/:id"component={TeacherDetails} />
-           <Route path="/teachers" component={ListTeacher} />
+           <Route path="/Dashteachers/:id"component={TeacherDetails} />
+           <Route path="/Dashteachers" component={ListTeacher} />
            
-            <Route path="/product/update/:id" render={() =><UpdateProduct title="Modifier Le produit" />} ></Route>
+            <Route path="/Dashproduct/update/:id" render={() =><UpdateProduct title="Modifier Le produit" />} ></Route>
             <Route
                 path="/newProduct"
                 render={() =><NewProduct title="Ajouter Produit" />}
               />
-            <Route path="/products/:id" component={ProductDetails}  />
-            <Route path="/products" component={ListProduct} />
+            <Route path="/Dashproducts/:id" component={ProductDetails}  />
+            <Route path="/Dashproducts" component={ListProduct} />
            
-            <Route path="/update/:id" render={() => <UpdateUser title="Modifier l'utilisateur" />} ></Route>
+            <Route path="/updateUsers/:id" render={() => <UpdateUser title="Modifier l'utilisateur" />} ></Route>
             <Route
               path="/newUser"
               render={() => <New title="Ajouter un  Utilisateur" />}
             />
-            <Route path="/users/:id" render={()=><Single/>} />
-            <Route path="/users" component={ListUser} />
+            <Route path="/Dashusers/:id" render={()=><Single/>} />
+            <Route path="/Dashusers" component={ListUser} />
             <Route path="/dashboard" component={DashboardHome} />
           
 

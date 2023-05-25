@@ -29,13 +29,13 @@ export const teacherColumns = [
   {
     field: "name",
     headerName: "Nom",
-    width: 230,
+    width: 210,
    
   },
   {
     field: "email",
     headerName: "Email",
-    width: 230,
+    width: 260,
   },
 
   {
@@ -46,7 +46,7 @@ export const teacherColumns = [
   {
     field: "role",
     headerName: "Role",
-    width: 160,
+    width: 120,
     
   },
 ];
@@ -55,7 +55,7 @@ export const conservatoireColumns = [
   {
     field: "name",
     headerName: "Nom",
-    width: 230,
+    width: 200,
    
   },
   {
@@ -81,24 +81,24 @@ export const ProductColumns = [
   {
     field: "title",
     headerName: "Nom",
-    width: 160,
+    width: 110,
    
   },
   {
     field: "description",
     headerName: "Déscription",
-    width: 160,
+    width: 200,
   },
 
   {
     field: "quantity",
     headerName: "Quantité",
-    width: 80,
+    width: 70,
   },
   {
     field: "price",
     headerName: "Prix",
-    width: 70,
+    width: 60,
     
   },
   {

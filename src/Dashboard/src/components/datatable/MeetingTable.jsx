@@ -27,7 +27,7 @@ const MeetingTable = () => {
       setData((prevData) => prevData.filter((teacher) => teacher.id !== id));
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
       alert("Réunion supprimée avec succès !");
-      window.location.href = "/meetings";
+      window.location.href = "/Dashmeetings";
     } catch (error) {
       console.error("Erreur lors de la suppression de la Réunion :", error);
     }
@@ -42,7 +42,7 @@ const MeetingTable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/meetings/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/Dashmeetings/${id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">

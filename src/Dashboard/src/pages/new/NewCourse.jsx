@@ -55,7 +55,7 @@ const NewCourse = ({ title }) => {
 
       if (res.status === 201) {
         alert("Cours ajouté avec succès !");
-        window.location.href = `/playlists/${_id}`;
+        window.location.href = `/Dashplaylists/${_id}`;
       }
     } catch (error) {
       console.log(error);

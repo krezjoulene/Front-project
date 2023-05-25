@@ -34,7 +34,7 @@ const CourseDetails = () => {
                 {cour && (
                     <div className="top">
                         <div className="left">
-                            <Link to={`/cour/update/${cour._id}`}>
+                            <Link to={`/Dashcour/update/${cour._id}`}>
                                 <div className="editButton">Modifier</div>
                             </Link>
                             <h1 className="title">Informations</h1>

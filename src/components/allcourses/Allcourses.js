@@ -43,7 +43,7 @@ const AllCorses = () => {
       <Detailsback2 />
       {(isLoggedIn && userRole === "teacher") ? (
         <>
-          <Link to="/Allcorses"><i className="fa fa-plus Ajoutcours">  Ajouter Cours</i></Link>
+          <Link to="/Addcorses"><i className="fa fa-plus Ajoutcours">  Ajouter Cours</i></Link>
           {cours?.map((val) => (
             <div className="instru-details-container">
               <div className="instru-details-content">

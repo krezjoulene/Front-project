@@ -77,7 +77,7 @@ const UpdateCourse = ({ title }) => {
             if (res.status === 200) {
                 console.log("cours: ", res.data);
                 alert("cour modifié avec succès !");
-                window.location.href = `/courses/${id}`;
+                window.location.href = `/Dashcourses/${id}`;
             }
         } catch (error) {
             console.log(error);

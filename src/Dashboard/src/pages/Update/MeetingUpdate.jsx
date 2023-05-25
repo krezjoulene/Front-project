@@ -78,7 +78,7 @@ const UpdateMeetings = ({ title }) => {
             if (res.status === 200) {
                 console.log("reunions: ", res.data);
                 alert("Reunion modifié avec succès !");
-                window.location.href = `/meetings/${_id}`;
+                window.location.href = `/Dashmeetings/${_id}`;
             }
         } catch (error) {
             console.log(error);

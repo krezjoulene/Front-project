@@ -32,7 +32,7 @@ const MeetingDetails = () => {
         {reunion && (
           <div className="top">
             <div className="left">
-              <Link to={`/meetings/update/${reunion._id}`}>
+              <Link to={`/Dashmeetings/update/${reunion._id}`}>
                 <div className="editButton">Modifier</div>
               </Link>
               <h1 className="title">Informations</h1>

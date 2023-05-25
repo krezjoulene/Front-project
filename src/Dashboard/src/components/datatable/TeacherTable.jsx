@@ -28,7 +28,7 @@ const TeacherTable = () => {
       setData((prevData) => prevData.filter((teacher) => teacher.id !== id));
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
       alert("Enseignant supprimé avec succès !");
-      window.location.href = "/teachers";
+      window.location.href = "/Dashteachers";
     } catch (error) {
       console.error("Erreur lors de la suppression de l'enseignant :", error);
     }
@@ -43,7 +43,7 @@ const TeacherTable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/teachers/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/Dashteachers/${id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">

@@ -49,9 +49,9 @@ const InstrumentDetails = () => {
           {instrument.userId === loggedInUserId ? (
             <>
             <div style={{ position: 'relative', top: '-80px' , marginLeft : '250px' , fontSize:'20px'}}>
-            <button3 onClick={() => removeItem(instrument)}>
+            <div onClick={() => removeItem(instrument)}>
               <i className="fa fa-trash" aria-hidden="true"></i>
-            </button3>
+            </div>
           </div>
           <div style={{ position: 'relative', top: '-102px' , marginLeft : '200px' , fontSize:'20px' , cursor:"pointer"}} >
           <Link to={`/UpdateProduct/${instrument._id}`}>

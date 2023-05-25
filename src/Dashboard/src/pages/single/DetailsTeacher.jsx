@@ -34,7 +34,7 @@ const TeacherDetails = () => {
           <div className="left">
           {teacher.map((val)=>(
             <>
-            <Link to={`/teacher/update/${val._id}`}>
+            <Link to={`/Dashteacher/update/${val._id}`}>
             <div className="editButton">Modifier</div>
             </Link>
             <h1 className="title">Informations</h1>

@@ -65,7 +65,7 @@ const NewConservatoire = ({ title }) => {
       if (res.status === 201) {
         console.log("conservatoire: ", res.data.data);
         alert("Conservatoire ajouté avec succès !");
-        window.location.href = "/conservatoires";
+        window.location.href = "/Dashconservatoires";
       }
     } catch (error) {
       console.log(error);

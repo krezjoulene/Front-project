@@ -59,37 +59,37 @@ const Sidebar = () => {
           </li>
           </Link>
           <p className="title">LISTES</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/Dashusers" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon2" />
               <span>Utilisateurs</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/Dashproducts" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon2" />
               <span>Produits</span>
             </li>
           </Link>
-          <Link to="/teachers" style={{ textDecoration: "none" }}>
+          <Link to="/Dashteachers" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon2" />
               <span>Enseignants</span>
             </li>
           </Link>
-          <Link to="/playlists" style={{ textDecoration: "none" }}>
+          <Link to="/Dashplaylists" style={{ textDecoration: "none" }}>
             <li>
               <SchoolIcon className="icon2" />
               <span>Cours</span>
             </li>
           </Link>
-          <Link to="/meetings" style={{ textDecoration: "none" }}>
+          <Link to="/Dashmeetings" style={{ textDecoration: "none" }}>
             <li>
               <SchoolIcon className="icon2" />
               <span>Réunions en ligne</span>
             </li>
           </Link>
-          <Link to="/conservatoires" style={{ textDecoration: "none" }}>
+          <Link to="/Dashconservatoires" style={{ textDecoration: "none" }}>
             <li>
               <PianoIcon className="icon2" />
               <span>Conservatoires</span>
@@ -154,7 +154,7 @@ const Sidebar = () => {
               <span>Cours</span>
             </li>
           </Link>
-          <Link to="/meetings" style={{ textDecoration: "none" }}>
+          <Link to="/Dashmeetings" style={{ textDecoration: "none" }}>
             <li>
               <SchoolIcon className="icon2" />
               <span>Réunions en ligne</span>

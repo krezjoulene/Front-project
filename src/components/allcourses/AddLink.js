@@ -60,7 +60,6 @@ function AddMeeting() {
         },
       });
 
-      console.log("reunion : ", res.data);
       alert("Lien Meet ajouté avec succès !");
       window.location.href = "/courses";
     } catch (error) {

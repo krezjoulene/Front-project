@@ -64,7 +64,7 @@ const New = ({ title }) => {
 
       if (res.status === 201) {
         alert("Utilisateur ajouté avec succès !");
-        window.location.href = "/users";
+        window.location.href = "/Dashusers";
       }
     } catch (error) {
       console.log(error);

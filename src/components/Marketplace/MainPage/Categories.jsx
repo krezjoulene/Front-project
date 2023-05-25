@@ -10,7 +10,6 @@ const Categories = () => {
       try {
         const response = await axios.get("http://localhost:8000/api/v1/categories");
         setCategories(response.data);
-        console.log("category ",response.data);
       } catch (error) {
         console.log(error);
       }

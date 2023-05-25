@@ -84,7 +84,7 @@ const UpdateTeacher = ({ title }) => {
 
             if (res.status === 200) {
                 alert("Enseignant modifié avec succès !");
-                window.location.href = `/teachers/${id}`;
+                window.location.href = `/Dashteachers/${id}`;
             }
         } catch (error) {
             console.log(error);

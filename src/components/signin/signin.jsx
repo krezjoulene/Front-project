@@ -67,12 +67,9 @@ function Sign() {
             const userPhone = res.data.data.phoneNumber ;
             const userPassword = res.data.data.password ;
             const conservatoire = res.data.data.conservatoire ;
-            console.log(userRole , conservatoire)
-            console.log("phone :",res.data.data.phoneNumber )
             // Enregistrer le jeton et le role de l'utilisateur dans le stockage local ou les cookies
             setIsLoggedIn(true);
             localStorage.setItem('token', token);
-            console.log('token',token);
             localStorage.setItem('UserRole', userRole);
             localStorage.setItem('UserName',userName);
             localStorage.setItem('UserEmail',userEmail);
@@ -80,8 +77,6 @@ function Sign() {
             localStorage.setItem('UserPassword', userPassword); 
             localStorage.setItem('conservatoire', conservatoire); 
             localStorage.setItem('UserId',userId); 
-            console.log(userId);   
-            console.log('Role :',userRole , 'cons :', conservatoire)       
        if (token && userRole==="superadmin") {
         alert("Login réussi");
         window.location.href = "dashboard";

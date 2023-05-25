@@ -87,7 +87,7 @@ const UpdatePlaylist = ({ title }) => {
             if (res.status === 200) {
                 console.log("playlists: ", res.data);
                 alert("playlist modifié avec succès !");
-                window.location.href = `/playlists/${id}`;
+                window.location.href = `/Dashplaylists/${id}`;
             }
         } catch (error) {
             console.log(error);

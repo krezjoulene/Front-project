@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Detailsback from "../Marketplace/background/backdetails";
 import axios from "axios";
+import Header from "../common/header/Header";
+import Footer from "../common/footer/Footer";
 
 function AddCourse() {
   const [name, setName] = useState("");
@@ -8,8 +10,8 @@ function AddCourse() {
   const [pdf, setpdf] = useState(null);
   const [video, setvd] = useState(null);
   const [image, setImage] = useState(null);
-  const playlist = localStorage.getItem("PlaylistId");
-
+  const playlistId = localStorage.getItem("PlaylistId");
+  console.log(playlistId)
   const handelchangName = (e) => {
     setName(e.target.value);
   };
@@ -27,7 +29,7 @@ function AddCourse() {
       formData.append("image", image);
       formData.append("title", name);
       formData.append("description", description);
-      formData.append("playlist", playlist);
+      formData.append("playlist", playlistId);
 
       const token = localStorage.getItem("token");
       const res = await axios.post("http://localhost:8000/api/v1/cours", formData, {
@@ -39,7 +41,7 @@ function AddCourse() {
 
       if (res.status === 201) {
         alert("Cours ajouté avec succès !");
-        window.location.href = `/playlists/:${playlist}`;
+        window.location.href = `/playlists/${playlistId}`;
       }
     } catch (error) {
       console.log(error);
@@ -59,6 +61,7 @@ function AddCourse() {
 
   return (
     <>
+      <Header/>
       <Detailsback />
       <div className="add-instrument-form">
         <h2>Ajouter un nouveau cours</h2>
@@ -100,6 +103,8 @@ function AddCourse() {
           </button>
         </form>
       </div>
+      <Footer/>
+
     </>
   );
 }

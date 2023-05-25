@@ -13,7 +13,7 @@ const TableProduct = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/v1/products");
-        console.log("produit", response.data);
+        console.log("Dashproduit", response.data);
         setData(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits :", error);
@@ -29,7 +29,7 @@ const TableProduct = () => {
       setData((prevData) => prevData.filter((product) => product.id !== id));
       setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
       alert("Produit supprimé avec succès !");
-      window.location.href = "/products";
+      window.location.href = "/Dashproducts";
     } catch (error) {
       console.error("Erreur lors de la suppression du produit :", error);
     }
@@ -44,7 +44,7 @@ const TableProduct = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/Dashproducts/${id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">

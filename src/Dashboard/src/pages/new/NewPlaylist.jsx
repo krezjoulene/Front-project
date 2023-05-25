@@ -58,7 +58,7 @@ const NewPlaylist = ({ title }) => {
 
       if (res.status === 201) {
         alert("Playlist ajoutée avec succès !");
-        window.location.href = "/playlists";
+        window.location.href = "/Dashplaylists";
       }
     } catch (error) {
       console.log(error);

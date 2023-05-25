@@ -69,7 +69,7 @@ const NewReunion = ({ title }) => {
 
       console.log("réunion : ", res.data);
       alert("Lien Meet ajouté avec succès !");
-      window.location.href = "/meetings";
+      window.location.href = "/Dashmeetings";
     } catch (error) {
       console.log(error);
       alert("Erreur lors de l'ajout du lien Meet. Veuillez réessayer.");

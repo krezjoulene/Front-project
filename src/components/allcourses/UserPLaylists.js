@@ -30,12 +30,12 @@ const UserPlaylist = () => {
       {playlist.length > 0 ? (
         <>
            <div style={{ color:"#7C4A15" , fontWeight:'bold' , fontSize:'27px' , marginLeft:"65px"}}>
-           Votre Liste de Cours Payant :
+           Votre Liste de Cours Acheté :
          </div>
        { playlist.map((val) => (
           <div className="instru-details-container" key={val._id}>
             <div className="instru-details-content">
-              <Link to={`/playlist/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
+              <Link to={`/playlists/${val._id}`} onClick={() => window.scrollTo(0, 0)}>
                 <h1 className="">{val.title}</h1>    
               </Link>            
             </div>

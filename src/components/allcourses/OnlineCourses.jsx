@@ -21,7 +21,7 @@ const OnlineCourses = () => {
     <>
       <section className='online'>
         <div className='container'>
-          <Heading subtitle='Les Réunion En ligne' title='Parcourez Nos Cours Réunion en ligne' />
+          <Heading subtitle='Les Webinaire' title='Parcourez Nos Webinaires' />
           <div className='content grid3'>
             {playlist?.map((val) => (
                <Link to={`/reunion/${val._id}`} onClick={() => window.scrollTo(0, 0)}>

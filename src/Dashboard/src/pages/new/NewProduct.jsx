@@ -75,7 +75,7 @@ const NewProduct = ({ title }) => {
 
       if (res.status === 201) {
         alert("Produit ajouté avec succès !");
-        window.location.href = "/products";
+        window.location.href = "/Dashproducts";
       }
     } catch (error) {
       console.log(error);

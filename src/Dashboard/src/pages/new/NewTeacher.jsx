@@ -84,7 +84,7 @@ const NewTeacher = ({ title }) => {
       if (res.status === 201) {
         console.log("teacher: ", res.data.data);
         alert("Enseignant ajouté avec succès !");
-        window.location.href = "/teachers";
+        window.location.href = "/Dashteachers";
       }
     } catch (error) {
       console.log(error);

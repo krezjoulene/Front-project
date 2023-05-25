@@ -44,7 +44,7 @@ const TeacherConservatoireTable = () => {
         const id = params.row.id;
         return (
           <div className="cellAction">
-            <Link to={`/teachers/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/Dashteachers/${id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" onClick={() => window.scrollTo(0, 0)}>Voir</div>
             </Link>
             <div className="deleteButton">
@@ -60,7 +60,7 @@ const TeacherConservatoireTable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Ajouter un nouvel enseignant
-        <Link to="/teachers/new" className="link">
+        <Link to="/newTeacher" className="link">
           Ajouter
         </Link>
       </div>

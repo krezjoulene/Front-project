@@ -98,7 +98,7 @@ const UpdateProduct = ({ title }) => {
             if (res.status === 200) {
                 console.log("products: ", res.data);
                 alert("Produit modifié avec succès !");
-                window.location.href = "/products";
+                window.location.href = "/Dashproducts";
             }
         } catch (error) {
             console.log(error);

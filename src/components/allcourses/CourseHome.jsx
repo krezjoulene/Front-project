@@ -31,7 +31,6 @@ const CourseHome = () => {
 
     const url = searchParams.get("playlistId");
 const userId = searchParams.get("userId");
-  console.log("User ID:", userId);
   
 
 if (url ) {
@@ -79,7 +78,6 @@ if (url ) {
     if (token && userRole) {
       setIsLoggedIn(true);
       setUserRole(userRole);
-      console.log("kkkk", userRole)
     }
   }, []);
 

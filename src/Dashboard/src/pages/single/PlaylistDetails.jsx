@@ -45,7 +45,7 @@ const PlaylistDetails = () => {
           setCourses((prevCourses) => prevCourses.filter((cours) => cours.id !== id));
           setSelectedIds((prevIds) => prevIds.filter((selectedId) => selectedId !== id));
           alert("Cours supprimé avec succès !");
-          window.location.href =`/playlists/${id}` ;
+          window.location.href =`/Dashplaylists/${id}` ;
         } catch (error) {
           console.error("Erreur lors de la suppression du cours :", error);
         }
@@ -60,7 +60,7 @@ const PlaylistDetails = () => {
                 const id = params.row.id;
                 return (
                     <div className="cellAction">
-                        <Link to={`/courses/${id}`} style={{ textDecoration: "none" }}>
+                        <Link to={`/Dashcourses/${id}`} style={{ textDecoration: "none" }}>
                             <div className="viewButton">Voir</div>
                         </Link>
                         <div className="deleteButton">
@@ -81,7 +81,7 @@ const PlaylistDetails = () => {
                 {playlist && (
                     <div className="top">
                         <div className="left">
-                            <Link to={`/playlistupdate/${playlist._id}`}>
+                            <Link to={`/Dashplaylistupdate/${playlist._id}`}>
                                 <div className="editButton">Modifier</div>
                             </Link>
                             <h1 className="title">Informations</h1>
