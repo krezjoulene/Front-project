@@ -3,9 +3,10 @@ import Categories from "./Categories"
 import "./Home.css"
 import SliderHome from "./Slider"
 import { Link } from "react-router-dom"
+import InstruCard from "../instrumentsCard";
 
 
-const Home2 = ({ CartItem }) => {
+const Home2 = ({ CartItem , addToCart }) => {
   window.addEventListener("scroll", function () {
     const search = document.querySelector(".search")
     search.classList.toggle("active", window.scrollY > 100)
@@ -13,7 +14,11 @@ const Home2 = ({ CartItem }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
 
   useEffect(() => {
@@ -37,7 +42,7 @@ const Home2 = ({ CartItem }) => {
 
           <div className='search-box f_flex'>
             <i className='fa fa-search'></i>
-            <input type='text' placeholder='Cherchez et appuyez sur Entrée...' />
+            <input type='text' placeholder='Cherchez et appuyez sur Entrée...' onChange={handleSearchChange}/>
             <span>Toutes les catégories</span> 
           </div>
 
@@ -76,6 +81,11 @@ const Home2 = ({ CartItem }) => {
         <div className='container d_flex'>
           <Categories />
           <SliderHome />
+        </div>
+      </section>
+      <section className='instru padding'>
+        <div className='container grid'>
+          <InstruCard addToCart={addToCart} searchValue={searchValue}/>
         </div>
       </section>
     </>

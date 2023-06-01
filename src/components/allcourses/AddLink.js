@@ -60,7 +60,7 @@ function AddMeeting() {
         },
       });
 
-      alert("Lien Meet ajouté avec succès !");
+      alert("Webinaire ajouté avec succès !");
       window.location.href = "/courses";
     } catch (error) {
       console.log(error);
@@ -73,7 +73,7 @@ function AddMeeting() {
         <Header/>
       <Detailsback />
       <div className="add-instrument-form">
-        <h2>Ajouter une réunion en ligne</h2>
+        <h2>Ajouter un Webinaire</h2>
         <form>
           <div className="form-group">
             <label htmlFor="name">
@@ -87,16 +87,7 @@ function AddMeeting() {
               onChange={handleChangName}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="price"><b>Prix</b></label>
-            <input
-              type="number"
-              id="prix"
-              placeholder="Saisie un prix >0 "
-              value={prix}
-              onChange={handelchangPrix}
-            />
-          </div>
+         
           <div className="form-group">
             <label htmlFor="description">
               <b>Description <span style={{ color: "red", fontWeight: "bold" , marginLeft:"10px" }}>  *</span></b>

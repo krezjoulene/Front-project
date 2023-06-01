@@ -84,6 +84,7 @@ import UpdateMeetings from "./Dashboard/src/pages/Update/MeetingUpdate"
 import { MeetingColumns } from "./Dashboard/src/datatablesource"
 import MeetingDetails from "./Dashboard/src/pages/single/MeetingDetails"
 import NewReunion from "./Dashboard/src/pages/new/NewMeeting"
+import NewTeacherCons from "./Dashboard/src/pages/new/newteachercons"
 function App() {
   const [CartItem, setCartItem] = useState([])
 
@@ -200,7 +201,7 @@ function App() {
             <Route path="/AdminProfileConservatoire" component={ConsProfile}/>
 
             <Route path="/conservatoireplaylists" component={ConsPlaylist} />
-
+            <Route path="/newteachercons" component={NewTeacherCons} />
             <Route path="/conservatoireteachers" component={ListConsTeacher} />
             <Route path="/Dashmeetings/update/:_id" render={() =><UpdateMeetings title="Modifier Le Réunion" />} ></Route>
             <Route

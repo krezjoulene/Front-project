@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const ConservatoireTable = () => {
+const ConservatoireTable = ({searchValue}) => {
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
@@ -58,7 +58,10 @@ const ConservatoireTable = () => {
     },
   ];
   
-
+  const filteredData = data.filter((user) => {
+    const username = user.name.toLowerCase();
+    return username.includes(searchValue.toLowerCase());
+  });
 
   
   
@@ -72,7 +75,7 @@ const ConservatoireTable = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={data.map((val) => ({ id: val._id, ...val }))}
+        rows={filteredData.map((val) => ({ id: val._id, ...val }))}
         columns={conservatoireColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

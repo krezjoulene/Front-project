@@ -86,7 +86,7 @@ const Sidebar = () => {
           <Link to="/Dashmeetings" style={{ textDecoration: "none" }}>
             <li>
               <SchoolIcon className="icon2" />
-              <span>Réunions en ligne</span>
+              <span>Webinaire</span>
             </li>
           </Link>
           <Link to="/Dashconservatoires" style={{ textDecoration: "none" }}>
@@ -157,7 +157,7 @@ const Sidebar = () => {
           <Link to="/Dashmeetings" style={{ textDecoration: "none" }}>
             <li>
               <SchoolIcon className="icon2" />
-              <span>Réunions en ligne</span>
+              <span>Webinaire</span>
             </li>
           </Link>
           <p className="title">UTILE</p>

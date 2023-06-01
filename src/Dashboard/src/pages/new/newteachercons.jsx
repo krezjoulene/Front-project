@@ -5,7 +5,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const NewTeacher = ({ title }) => {
+const NewTeacherCons = ({ title }) => {
   const [image, setImage] = useState(null);
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
@@ -13,9 +13,8 @@ const NewTeacher = ({ title }) => {
   const [mdp, setMdp] = useState("");
   const [Cmdp, setCmdp] = useState("");
   const [role, setRole] = useState("");
-  const [conservatoire, setConservatoire] = useState(null);
-  const [conservatoires, setConservatoires] = useState([]);
-
+  const userId = localStorage.getItem("UserId");
+  console.log("conservatoire",userId)
   const handleChangeNom = (e) => {
     setNom(e.target.value);
   };
@@ -40,30 +39,19 @@ const NewTeacher = ({ title }) => {
     setCmdp(e.target.value);
   };
 
-  const handleChangeConservatoire = (e) => {
-    setConservatoire(e.target.value);
-  };
+ 
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  const fetchConservatoires = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/v1/conservatoire");
-      setConservatoires(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  useEffect(() => {
-    fetchConservatoires();
-  }, []);
+
 
   const ajouterEnseignant = async (e) => {
     e.preventDefault();
     try {
+
       const formData = new FormData();
       formData.append("name", nom);
       formData.append("email", email);
@@ -71,8 +59,8 @@ const NewTeacher = ({ title }) => {
       formData.append("phoneNumber", telephone);
       formData.append("password", mdp);
       formData.append("image", image);
-      formData.append("conservatoire", conservatoire);
-      console.log(conservatoire)
+      formData.append("conservatoire", userId);
+
       const token = localStorage.getItem("token");
       const res = await axios.post("http://localhost:8000/api/v1/teacher", formData, {
         headers: {
@@ -174,7 +162,18 @@ const NewTeacher = ({ title }) => {
                 />
               </div>
 
-            
+              <div className="formInput">
+                <label htmlFor="password">Confirmer le mot de passe :</label>
+                <input
+                  type="password"
+                  id="Cpassword"
+                  name="Cpassword"
+                  placeholder="Confirmez le mot de passe"
+                  value={Cmdp}
+                  onChange={handleChangeConfirmationMotDePasse}
+                />
+              </div>
+
               <div className="formInput">
                 <label htmlFor="role">Rôle :</label>
                 <input
@@ -187,25 +186,7 @@ const NewTeacher = ({ title }) => {
                 />
               </div>
 
-              <div className="formInput">
-                <label htmlFor="conservatoire">Conservatoire :</label>
-                <select
-                  id="conservatoire"
-                  name="conservatoire"
-                  value={conservatoire}
-                  onChange={handleChangeConservatoire}
-                >
-                  <option value="">Sélectionnez un conservatoire</option>
-                  {conservatoires &&
-                    conservatoires.map((conservatoire) => (
-                      <option key={conservatoire._id} value={conservatoire._id}>
-                        {conservatoire.name},
-                        
-                      </option>
-                    ))}
-                    
-                </select>
-              </div>
+            
 
               <button onClick={ajouterEnseignant}>Envoyer</button>
             </form>
@@ -216,4 +197,4 @@ const NewTeacher = ({ title }) => {
   );
 };
 
-export default NewTeacher;
+export default NewTeacherCons;

@@ -6,16 +6,23 @@ import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlin
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { DarkModeContext } from "../../../../components/context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({handleSearch}) => {
   const { dispatch } = useContext(DarkModeContext);
+  const [searchValue, setSearchValue] = useState(""); // État pour stocker la valeur de recherche
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setSearchValue(value); // Met à jour la valeur de recherche
+    handleSearch(value); // Appelle la fonction de recherche passée en tant que prop dans ListUser
+  };
 
   return (
     <div className="navbar2">
       <div className="wrapper">
         <div className="search">
-          <input type="text" placeholder="Search..." />
+          <input type="text" placeholder="Search..." value={searchValue} onChange={handleChange} />
           <SearchOutlinedIcon />
         </div>
         <div className="items2">

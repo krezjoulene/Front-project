@@ -65,7 +65,7 @@ const ConservatoireDetails = () => {
         </div>
 
         <div className="bottom">
-          <Chart aspect={3 / 1} title="Dépenses des produits (6 derniers mois)" />
+          <Chart aspect={3 / 1} title="Dépenses des conservatoires (6 derniers mois)" />
         </div>
       </div>
     </div>

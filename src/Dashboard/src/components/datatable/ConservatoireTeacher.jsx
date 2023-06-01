@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const TeacherConservatoireTable = () => {
+const TeacherConservatoireTable = ({searchValue}) => {
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
@@ -55,18 +55,21 @@ const TeacherConservatoireTable = () => {
       },
     },
   ];
-
+  const filteredData = data.filter((user) => {
+    const username = user.name.toLowerCase();
+    return username.includes(searchValue.toLowerCase());
+  });
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Ajouter un nouvel enseignant
-        <Link to="/newTeacher" className="link">
+        <Link to="/newteachercons" className="link">
           Ajouter
         </Link>
       </div>
       <DataGrid
         className="datagrid"
-        rows={data.map((val) => ({ id: val._id, ...val }))}
+        rows={filteredData.map((val) => ({ id: val._id, ...val }))}
         columns={teacherColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

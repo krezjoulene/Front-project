@@ -29,7 +29,22 @@ const CoursesCard = () => {
   });
   const [teachers, setTeachers] = useState([]);
   const [conservatoires, setConservatoires] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
+  window.addEventListener("scroll", function () {
+    const search = document.querySelector(".search")
+    search.classList.toggle("active", window.scrollY > 100)
+  })
+
+  const [afficherListe, setAfficherListe] = useState(false);
+
+  const toggleListe = () => {
+    setAfficherListe(!afficherListe);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
   const fetchAxios = async () => {
     const playlistsRes = await axios.get("http://localhost:8000/api/v1/playlists");
     setPlaylist(playlistsRes.data);
@@ -128,7 +143,11 @@ const CoursesCard = () => {
         filters.title.includes(playlist.title)
       );
     }
-  
+    if (searchValue.trim() !== "") {
+      filteredPlaylists = filteredPlaylists.filter((playlist) =>
+        playlist.title.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
     return filteredPlaylists;
   };
   
@@ -139,6 +158,60 @@ const CoursesCard = () => {
   const uniqueConservatoires = [...new Set(playlist.map((playlist) => playlist.conservatoireName))];
 
   return (
+    <>
+        <section className='search'>
+        <div className='container c_flex' style={{ marginTop: "-15px" }}>
+          <div>
+            <img src="images/IMG-20230523-WA0000-removebg-preview.png" alt="Logo" style={{ width: "110px" }}></img>
+          </div>
+
+          <div className='search-box f_flex'>
+            <i className='fa fa-search'></i>
+            <input
+              type='text'
+              placeholder='Cherchez et appuyez sur Entrée...'
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
+            <span>Toutes les catégories</span>
+          </div>
+
+          <div className='icon2 f_flex width '>
+            {(isLoggedIn && userRole === "teacher") ? (
+              <>
+                <div style={{ position: 'relative' }}>
+                  <i onClick={toggleListe} className='fa fa-plus icon-circle'></i>
+                  {afficherListe && (
+                    <div className='dropdown'>
+                      <ul>
+                        <li>
+                          <a href="/ajouterPlaylist">Ajouter une playlist</a>
+                        </li>
+                        <li>
+                          <a href="/ajouterLien">Ajouter un Webinaire</a>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                <Link to="/profile" onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
+                <Link to="/UserPlaylist" onClick={() => window.scrollTo(0, 0)}><i className="fa fa-file icon-circle"></i></Link>
+
+              </>
+            ) : (userRole == "user") ? (
+              <>
+                <Link to="/profile" onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
+                <Link to="/UserPlaylist" onClick={() => window.scrollTo(0, 0)}><i className="fa fa-file icon-circle"></i></Link>
+              </>
+            ) : (
+              <>
+                <Link to="/signin" onClick={() => window.scrollTo(0, 0)}><i className='fa fa-user icon-circle'></i></Link>
+                <Link to="/signin" onClick={() => window.scrollTo(0, 0)}><i className="fa fa-file icon-circle"></i></Link>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
     <section className="container d_flex">
       <section className="course-filter">
         <div className="container">
@@ -307,6 +380,7 @@ const CoursesCard = () => {
         </div>
       </section>
     </section>
+    </>
   );
 };
 

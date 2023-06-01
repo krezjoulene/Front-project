@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const MeetingTable = () => {
+const MeetingTable = ({searchValue}) => {
   const [data, setData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   useEffect(() => {
@@ -54,6 +54,10 @@ const MeetingTable = () => {
     },
   ];
 
+   const filteredData = data.filter((user) => {
+    const username = user.title.toLowerCase();
+    return username.includes(searchValue.toLowerCase());
+  });
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -64,7 +68,7 @@ const MeetingTable = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={data.map((val) => ({ id: val._id, ...val }))}
+        rows={filteredData.map((val) => ({ id: val._id, ...val }))}
         columns={MeetingColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

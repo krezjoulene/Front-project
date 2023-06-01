@@ -3,24 +3,27 @@ import "./instrument.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const InstruCard = ({ addToCart }) => {
+const InstruCard = ({ addToCart, searchValue }) => {
   const [product, setProduct] = useState([]);
   const [loggedInUserId, setLoggedInUserId] = useState("");
 
-  const fetchAxios = async () => {
-    const res = await axios.get("http://localhost:8000/api/v1/products");
-    setProduct(res.data);
-  };
-
   useEffect(() => {
+    const fetchAxios = async () => {
+      const res = await axios.get("http://localhost:8000/api/v1/products");
+      setProduct(res.data);
+    };
     fetchAxios();
     const userId = localStorage.getItem("UserId");
     setLoggedInUserId(userId);
   }, []);
 
+  const filteredProducts = product.filter((val) =>
+    val.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <>
-      {product?.map((val) => (
+      {filteredProducts.map((val) => (
         <div className="items shadow" key={val._id}>
           {val.userId === loggedInUserId ? (
             <i className="fa fa-times"></i>
